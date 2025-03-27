@@ -1,12 +1,17 @@
 import { NextRequest } from 'next/server';
-import { uploadVideo } from '@/lib/cloud-storage/upload';
-import { updateProgress } from './progress/route';
+import { Storage } from '@google-cloud/storage';
 import { v4 as uuidv4 } from 'uuid';
-import type { UploadProgress, VideoUploadResponse } from '@/lib/types';
+import type { VideoUploadResponse } from '@/lib/types';
+
+const storage = new Storage();
+const bucket = storage.bucket(process.env.GOOGLE_CLOUD_STORAGE_BUCKET || '');
 
 export async function POST(request: NextRequest): Promise<Response> {
   try {
-    // Get the file from form data
+    if (!process.env.GOOGLE_CLOUD_STORAGE_BUCKET) {
+      throw new Error('Google Cloud Storage bucket not configured');
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
 
@@ -35,20 +40,37 @@ export async function POST(request: NextRequest): Promise<Response> {
       );
     }
 
-    const uploadId = uuidv4();
+    // Create a unique filename
+    const timestamp = Date.now();
+    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const filename = `videos/${timestamp}-${safeName}`;
+    const blob = bucket.file(filename);
+
+    // Get file buffer
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
     // Upload to Cloud Storage
-    const gcsUri = await uploadVideo(file, (progress: UploadProgress) => {
-      if (progress.status === 'error') {
-        updateProgress(uploadId, -1);
-      } else {
-        updateProgress(uploadId, progress.progress);
-      }
+    await new Promise((resolve, reject) => {
+      const stream = blob.createWriteStream({
+        resumable: false,
+        contentType: file.type,
+        metadata: {
+          originalname: file.name,
+          size: file.size,
+          uploadedAt: new Date().toISOString(),
+        },
+      });
+
+      stream.on('error', reject);
+      stream.on('finish', resolve);
+      stream.end(buffer);
     });
 
-    // Return the GCS URI
+    const gcsUri = `gs://${bucket.name}/${filename}`;
+
     return Response.json(
-      { success: true, gcsUri, uploadId } as VideoUploadResponse,
+      { success: true, gcsUri } as VideoUploadResponse,
       { status: 200 }
     );
   } catch (error: unknown) {

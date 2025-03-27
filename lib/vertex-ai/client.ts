@@ -16,7 +16,7 @@ export const vertexai = new VertexAI({
 
 // Get the model
 export const model = vertexai.preview.getGenerativeModel({
-  model: 'gemini-pro-vision',
+  model: 'gemini-2.0-flash-001',
   generationConfig: {
     maxOutputTokens: 2048,
     temperature: 0.4,

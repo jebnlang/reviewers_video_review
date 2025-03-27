@@ -15,11 +15,6 @@ export async function analyzeVideo(
         role: 'user',
         parts: [{
           text: prompt
-        }, {
-          fileData: {
-            mimeType: 'video/mp4',
-            fileUri: gcsUri
-          }
         }]
       }]
     });
@@ -41,7 +36,9 @@ export async function analyzeVideo(
 }
 
 function constructPrompt(gcsUri: string, adminSettings?: AdminSettings): string {
-  let prompt = `Analyze this video and provide a detailed review. Focus on:
+  let prompt = `You are a professional video content reviewer. Please analyze the video at this Google Cloud Storage URI: ${gcsUri}
+
+Please focus on:
 1. Overall quality and professionalism
 2. Content clarity and engagement
 3. Technical aspects (video quality, audio quality, lighting)

@@ -16,6 +16,9 @@ export function GET(request: NextRequest): Response {
   responseHeaders.set('Content-Type', 'text/event-stream');
   responseHeaders.set('Cache-Control', 'no-cache');
   responseHeaders.set('Connection', 'keep-alive');
+  responseHeaders.set('Access-Control-Allow-Origin', '*');
+  responseHeaders.set('Access-Control-Allow-Methods', 'GET');
+  responseHeaders.set('Access-Control-Allow-Headers', 'Content-Type');
 
   const stream = new ReadableStream({
     start(controller) {
@@ -23,14 +26,19 @@ export function GET(request: NextRequest): Response {
 
       // Function to send progress updates
       const sendProgress = () => {
-        const progress = uploadProgress.get(uploadId) ?? 0;
-        const data = encoder.encode(`data: ${JSON.stringify({ progress })}\n\n`);
-        controller.enqueue(data);
+        try {
+          const progress = uploadProgress.get(uploadId) ?? 0;
+          const data = encoder.encode(`data: ${JSON.stringify({ progress })}\n\n`);
+          controller.enqueue(data);
 
-        // If upload is complete or failed, close the stream
-        if (progress === 100 || progress === -1) {
-          controller.close();
-          uploadProgress.delete(uploadId);
+          // If upload is complete or failed, close the stream
+          if (progress === 100 || progress === -1) {
+            controller.close();
+            uploadProgress.delete(uploadId);
+          }
+        } catch (error) {
+          console.error('Error sending progress:', error);
+          controller.error(error);
         }
       };
 
@@ -62,5 +70,10 @@ export function GET(request: NextRequest): Response {
 
 // Helper function to update progress
 export function updateProgress(uploadId: string, progress: number): void {
+  if (!uploadId) {
+    console.error('Attempted to update progress without uploadId');
+    return;
+  }
+  console.log(`Updating progress for ${uploadId}: ${progress}%`);
   uploadProgress.set(uploadId, progress);
 } 

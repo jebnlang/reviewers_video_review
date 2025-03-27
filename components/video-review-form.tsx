@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useCallback, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Upload, Loader2, Video, ArrowRight } from "lucide-react"
+import { ArrowRight, Loader2, Upload, Video } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import VideoPreview from "@/components/video-preview"
@@ -25,6 +25,8 @@ export function VideoReviewForm() {
   const [showDecision, setShowDecision] = useState(false)
   const [adminSettings, setAdminSettings] = useState<AdminSettings | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | undefined>()
+  const [uploadId, setUploadId] = useState<string | undefined>()
+  const [gcsUri, setGcsUri] = useState<string | undefined>()
   const eventSourceRef = useRef<EventSource | null>(null)
 
   // Load admin settings from localStorage on component mount
@@ -35,22 +37,6 @@ export function VideoReviewForm() {
     }
   }, [])
 
-  const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setSelectedFile(file);
-      setUploadState({
-        status: 'idle',
-        progress: 0,
-        file,
-        previewUrl,
-        fileName: file.name,
-        fileSize: file.size,
-      });
-    }
-  }, []);
-
   const cleanupEventSource = useCallback(() => {
     if (eventSourceRef.current) {
       eventSourceRef.current.close()
@@ -58,93 +44,215 @@ export function VideoReviewForm() {
     }
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!selectedFile) return
+  useEffect(() => {
+    return () => {
+      cleanupEventSource()
+    }
+  }, [cleanupEventSource])
+
+  const setupEventSource = useCallback((newUploadId: string) => {
+    // Clean up any existing event source
+    cleanupEventSource();
+
+    console.log('Setting up SSE connection for uploadId:', newUploadId);
+    const eventSource = new EventSource(`/api/upload/progress?uploadId=${newUploadId}`);
+    eventSourceRef.current = eventSource;
+
+    let retryCount = 0;
+    const maxRetries = 3;
+
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        console.log('SSE progress update:', data);
+        const { progress } = data;
+
+        if (progress === 100) {
+          setUploadState(prev => ({
+            ...prev,
+            status: 'completed',
+            progress: 100,
+          }));
+          cleanupEventSource();
+        } else if (progress === -1) {
+          setUploadState(prev => ({
+            ...prev,
+            status: 'error',
+            progress: 0,
+            error: 'Upload failed during transfer'
+          }));
+          cleanupEventSource();
+        } else {
+          setUploadState(prev => ({
+            ...prev,
+            status: 'uploading',
+            progress,
+          }));
+        }
+      } catch (error) {
+        console.error('Error processing SSE message:', error);
+      }
+    };
+
+    eventSource.onerror = (error) => {
+      console.error('SSE connection error:', error);
+      
+      if (retryCount < maxRetries) {
+        retryCount++;
+        console.log(`Retrying SSE connection (attempt ${retryCount}/${maxRetries})...`);
+        
+        // Close the current connection
+        cleanupEventSource();
+        
+        // Wait a bit before retrying
+        setTimeout(() => {
+          setupEventSource(newUploadId);
+        }, 1000 * retryCount); // Exponential backoff
+      } else {
+        setUploadState(prev => ({
+          ...prev,
+          status: 'error',
+          progress: 0,
+          error: 'Lost connection to upload progress'
+        }));
+        cleanupEventSource();
+      }
+    };
+
+    eventSource.onopen = () => {
+      console.log('SSE connection opened');
+      retryCount = 0; // Reset retry count on successful connection
+    };
+  }, [cleanupEventSource]);
+
+  const handleFileChange = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('File input changed');
+    const file = event.target.files?.[0];
+    if (!file) {
+      console.log('No file selected');
+      return;
+    }
+
+    console.log('File selected:', {
+      name: file.name,
+      type: file.type,
+      size: file.size
+    });
+
+    setSelectedFile(file);
+    setUploadState({ status: 'idle', progress: 0 });
 
     try {
+      // Validate file type
+      const validTypes = ['video/mp4', 'video/webm', 'video/quicktime'];
+      if (!validTypes.includes(file.type)) {
+        console.error('Invalid file type:', file.type);
+        setUploadState(prev => ({
+          ...prev,
+          status: 'error',
+          progress: 0,
+          error: `Invalid file type. Please upload ${validTypes.map(t => t.split('/')[1].toUpperCase()).join(', ')}`
+        }));
+        return;
+      }
+
+      // Validate file size (100MB max)
+      const maxSize = 100 * 1024 * 1024; // 100MB in bytes
+      if (file.size > maxSize) {
+        console.error('File too large:', formatBytes(file.size));
+        setUploadState(prev => ({
+          ...prev,
+          status: 'error',
+          progress: 0,
+          error: `File too large. Maximum size is ${formatBytes(maxSize)}`
+        }));
+        return;
+      }
+
       setUploadState(prev => ({
         ...prev,
         status: 'uploading',
         progress: 0,
-        error: undefined
-      }))
+      }));
 
-      // Create form data
-      const formData = new FormData()
-      formData.append('file', selectedFile)
+      const formData = new FormData();
+      formData.append('file', file);
 
-      // Upload file
-      const uploadResponse = await fetch('/api/upload', {
+      console.log('Starting upload for file:', file.name);
+      const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData
-      })
+        body: formData,
+      });
 
-      if (!uploadResponse.ok) {
-        throw new Error('Upload failed')
+      console.log('Upload response status:', response.status);
+      const responseData = await response.json();
+      console.log('Upload response data:', responseData);
+
+      if (!response.ok) {
+        throw new Error(responseData.error || 'Upload failed');
       }
 
-      const { uploadId } = await uploadResponse.json()
-      
-      // Clean up any existing event source
-      cleanupEventSource()
+      setUploadState(prev => ({
+        ...prev,
+        status: 'completed',
+        progress: 100,
+      }));
 
-      // Set up SSE for progress updates
-      const eventSource = new EventSource(`/api/upload/progress?uploadId=${uploadId}`)
-      eventSourceRef.current = eventSource
-
-      eventSource.onmessage = (event) => {
-        const { progress } = JSON.parse(event.data)
-        if (progress === 100) {
-          setUploadState({ status: 'completed', progress: 100 })
-          cleanupEventSource()
-        } else if (progress === -1) {
-          setUploadState({ status: 'error', progress: 0 })
-          cleanupEventSource()
-        } else {
-          setUploadState({ status: 'uploading', progress })
-        }
-      }
-
-      eventSource.onerror = () => {
-        setUploadState({ status: 'error', progress: 0 })
-        cleanupEventSource()
-      }
-
-      // Start analysis
-      setIsAnalyzing(true)
-      const analysisResponse = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          gcsUri: uploadState.previewUrl,
-          adminSettings
-        })
-      })
-
-      if (!analysisResponse.ok) {
-        throw new Error('Analysis failed')
-      }
-
-      const analysisResult = await analysisResponse.json()
-      
-      if (!analysisResult.success) {
-        throw new Error(analysisResult.error || 'Analysis failed')
-      }
-
-      // Show decision screen
-      setIsAnalyzing(false)
-      setShowDecision(true)
+      setGcsUri(responseData.gcsUri);
 
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred'
+      console.error('Upload error:', error);
       setUploadState(prev => ({
         ...prev,
         status: 'error',
-        error: errorMessage
+        progress: 0,
+        error: error instanceof Error ? error.message : 'Failed to upload video'
+      }));
+    }
+  }, []);
+
+  const handleAnalyze = async () => {
+    if (!gcsUri) return
+
+    try {
+      setIsAnalyzing(true)
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          gcsUri,
+          adminSettings // Include admin settings if available
+        }),
+      })
+
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Analysis failed')
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Analysis failed')
+      }
+
+      // If we have a result, redirect to the results page
+      if (data.result) {
+        const { id, overallScore } = data.result
+        // Redirect to results page with the analysis ID
+        router.push(`/results/${id}`)
+      }
+
+    } catch (error) {
+      console.error('Analysis error:', error)
+      setUploadState(prev => ({
+        ...prev,
+        status: 'error',
+        error: error instanceof Error ? error.message : 'Failed to analyze video'
       }))
+    } finally {
       setIsAnalyzing(false)
-      cleanupEventSource()
     }
   }
 
@@ -214,122 +322,78 @@ export function VideoReviewForm() {
       </CardHeader>
 
       <CardContent className="pt-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-6">
           {uploadState.error && (
-            <div className="p-3 bg-destructive/10 text-destructive rounded-md text-sm flex items-center justify-between">
-              <span>{uploadState.error}</span>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={handleRetry}
-                className="hover:bg-destructive/20"
-              >
-                Retry
-              </Button>
-            </div>
-          )}
-          
-          {!uploadState.previewUrl ? (
-            <div className="border-2 border-dashed border-indigo-200 rounded-xl p-10 text-center cursor-pointer hover:bg-indigo-50/50 transition-all duration-300 group">
-              <input
-                type="file"
-                id="video-upload"
-                accept={DEFAULT_UPLOAD_OPTIONS.allowedTypes.join(',')}
-                onChange={handleFileChange}
-                className="hidden"
-                disabled={['uploading', 'processing'].includes(uploadState.status) || isAnalyzing}
-              />
-              <label htmlFor="video-upload" className="cursor-pointer flex flex-col items-center">
-                <div className="h-16 w-16 rounded-full bg-indigo-100 flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors duration-300">
-                  <Upload className="h-8 w-8 text-indigo-600" />
-                </div>
-                <p className="text-lg font-medium mb-1 text-indigo-700">Click to upload video</p>
-                <p className="text-sm text-muted-foreground">
-                  {DEFAULT_UPLOAD_OPTIONS.allowedTypes.map(type => type.split('/')[1].toUpperCase()).join(', ')} (max {formatBytes(DEFAULT_UPLOAD_OPTIONS.maxSizeInBytes)})
-                </p>
-              </label>
-            </div>
-          ) : (
-            <div className="space-y-4 rounded-xl overflow-hidden border border-indigo-100 shadow-sm">
-              <VideoPreview url={uploadState.previewUrl} />
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-50">
-                <div>
-                  <p className="text-sm font-medium truncate max-w-[200px] md:max-w-[300px]">
-                    {selectedFile?.name}
-                  </p>
-                  {selectedFile?.size && (
-                    <p className="text-xs text-muted-foreground">{formatBytes(selectedFile.size)}</p>
-                  )}
-                </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    if (uploadState.previewUrl) {
-                      URL.revokeObjectURL(uploadState.previewUrl)
-                    }
-                    setSelectedFile(undefined)
-                    setUploadState({
-                      status: 'idle',
-                      progress: 0,
-                    })
-                  }}
-                  disabled={['uploading', 'processing'].includes(uploadState.status) || isAnalyzing}
-                >
-                  Change
-                </Button>
-              </div>
+            <div className="p-3 bg-destructive/10 text-destructive rounded-md text-sm">
+              {uploadState.error}
             </div>
           )}
 
-          {uploadState.status !== 'idle' && (
-            <div className="space-y-2">
-              <Progress value={uploadState.progress} />
-              <p className="text-sm text-gray-500">
-                {uploadState.status === 'uploading' && 'Uploading...'}
-                {uploadState.status === 'processing' && 'Processing...'}
-                {uploadState.status === 'completed' && 'Upload complete!'}
-                {uploadState.status === 'error' && 'Upload failed. Please try again.'}
-              </p>
-            </div>
-          )}
-
-          {isAnalyzing && (
-            <div className="space-y-4 bg-slate-50 p-4 rounded-lg border border-slate-100">
-              <div className="flex items-center justify-center space-x-2 text-indigo-700">
-                <Loader2 className="h-5 w-5 animate-spin" />
-                <span className="font-medium">Analyzing your video...</span>
-              </div>
-            </div>
-          )}
-
-          {selectedFile && !isAnalyzing && !['uploading', 'processing'].includes(uploadState.status) && (
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={['uploading', 'processing'].includes(uploadState.status) || isAnalyzing}
+          <div className="border-2 border-dashed border-indigo-200 rounded-xl p-10 text-center hover:border-indigo-400 transition-colors duration-200">
+            <input
+              type="file"
+              id="video-upload"
+              accept="video/mp4,video/webm,video/quicktime"
+              onChange={handleFileChange}
+              className="hidden"
+              disabled={uploadState.status === 'uploading'}
+            />
+            <label 
+              htmlFor="video-upload" 
+              className={`cursor-pointer block ${uploadState.status === 'uploading' ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-80'}`}
             >
               {selectedFile ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Upload Video
-                </>
-              ) : isAnalyzing ? (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-center">
+                    <Video className="h-8 w-8 text-indigo-600" />
+                  </div>
+                  <p className="text-sm font-medium">{selectedFile.name}</p>
+                  <p className="text-xs text-gray-500">{formatBytes(selectedFile.size)}</p>
+                  {uploadState.status === 'uploading' ? (
+                    <p className="text-sm text-indigo-600">Uploading...</p>
+                  ) : uploadState.status === 'completed' ? (
+                    <p className="text-sm text-green-600">Upload complete!</p>
+                  ) : (
+                    <p className="text-sm text-gray-500">Click to change file</p>
+                  )}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <Upload className="h-8 w-8 mx-auto text-indigo-600" />
+                  <p className="text-sm font-medium">Click to upload video</p>
+                  <p className="text-xs text-gray-500">MP4, WEBM, MOV (max 100MB)</p>
+                </div>
+              )}
+            </label>
+          </div>
+
+          {uploadState.status === 'uploading' && (
+            <div className="space-y-2">
+              <Progress value={uploadState.progress} className="h-2" />
+              <p className="text-sm text-center text-gray-500">Uploading your video...</p>
+            </div>
+          )}
+
+          {uploadState.status === 'completed' && (
+            <Button
+              onClick={handleAnalyze}
+              className="w-full"
+              disabled={isAnalyzing}
+            >
+              {isAnalyzing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Analyzing...
                 </>
               ) : (
                 <>
-                  Start Analysis
+                  Analyze Video
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </>
               )}
             </Button>
           )}
-        </form>
+        </div>
       </CardContent>
     </Card>
   )
