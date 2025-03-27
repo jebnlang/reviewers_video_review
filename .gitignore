@@ -33,4 +33,7 @@ yarn-error.log*
 next-env.d.ts
 
 # IDE
-.cursor/ 
+.cursor/
+
+# Google Cloud credentials
+service-account-key.json 

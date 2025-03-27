@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import VideoReviewForm from "@/components/video-review-form"
+import { VideoReviewForm } from "@/components/video-review-form"
 import AdminSettingsButton from "@/components/admin-settings-button"
 
 export const metadata: Metadata = {
