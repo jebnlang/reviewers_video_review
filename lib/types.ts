@@ -40,6 +40,7 @@ export interface VideoUploadResponse {
 export interface VideoAnalysisRequest {
   gcsUri: string;
   adminSettings?: AdminSettings;
+  analysisId: string;
 }
 
 export interface VideoAnalysisResponse {
@@ -65,5 +66,11 @@ export interface VideoUploadOptions {
   maxSizeInBytes: number;
   allowedTypes: string[];
   generatePreview?: boolean;
+}
+
+// Type for representing analysis status during processing
+export interface AnalysisStatus {
+  status: 'processing' | 'error' | 'not_found'; // Add statuses as needed
+  message?: string; // Optional message (e.g., for errors)
 }
 

@@ -1,0 +1,59 @@
+{
+  "id": "analysis_1743337391613_rjy2pk4qz",
+  "overallScore": 69,
+  "summary": "The video appears to feature a dog, specifically a Labrador Retriever puppy. The focus seems to be on close-up shots of the dog's snout and general appearance, highlighting its characteristics as a pet and a member of the retriever family.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 65,
+      "feedback": "The product_relevance was analyzed but could not be scored precisely with the available data. Consider adding more specific details in the video for better analysis."
+    },
+    {
+      "name": "visual_quality",
+      "score": 70,
+      "feedback": "The visual quality needs improvement. Many elements are difficult to identify with confidence (0% confidence in detections). Consider better lighting, camera focus, or higher resolution."
+    },
+    {
+      "name": "audio_quality",
+      "score": 60,
+      "feedback": "No speech was detected in the video. If there should be narration or dialogue, check your audio recording equipment or consider adding voice-over."
+    },
+    {
+      "name": "content_engagement",
+      "score": 75,
+      "feedback": "The content engagement level appears to be moderate. The video contains 1 scene changes, which may make the content feel static. Consider adding more dynamic elements. The absence of narration may make it difficult for viewers to fully understand the content. Consider adding explanatory voice-over. The video could benefit from featuring a wider variety of content elements to increase visual interest."
+    },
+    {
+      "name": "product_visibility",
+      "score": 74,
+      "feedback": "The product visibility is good. The product is shown clearly in parts of the video, though some scenes could display it more prominently."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 65,
+      "feedback": "The unboxing_first_impressions was analyzed but could not be scored precisely with the available data. Consider adding more specific details in the video for better analysis."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Add audio, such as the dog barking, playing, or even just background music, to enhance the viewing experience.",
+    "Consider adding shots of the puppy interacting with its environment or people to provide more context and engagement.",
+    "If possible, include labels or text overlays identifying the breed and providing interesting facts about Labrador Retrievers."
+  ],
+  "analysisDate": "2025-03-30T12:23:11.614Z",
+  "videoLength": "00:21",
+  "adminSettings": {
+    "productPageUrl": "www.prodcut.com",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_visibility",
+      "unboxing_first_impressions"
+    ]
+  },
+  "productPageUrl": "www.prodcut.com"
+}

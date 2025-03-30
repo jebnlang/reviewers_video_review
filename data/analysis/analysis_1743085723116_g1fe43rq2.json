@@ -1,0 +1,57 @@
+{
+  "id": "analysis_1743085723116_g1fe43rq2",
+  "overallScore": 0,
+  "summary": "I was unable to process the video. Therefore, I cannot provide a summary of the video's strengths and weaknesses. I am returning a placeholder response.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 0,
+      "feedback": "Unable to assess product relevance due to video processing failure."
+    },
+    {
+      "name": "visual_quality",
+      "score": 0,
+      "feedback": "Unable to assess visual quality due to video processing failure."
+    },
+    {
+      "name": "audio_quality",
+      "score": 0,
+      "feedback": "Unable to assess audio quality due to video processing failure."
+    },
+    {
+      "name": "content_engagement",
+      "score": 0,
+      "feedback": "Unable to assess content engagement due to video processing failure."
+    },
+    {
+      "name": "product_visibility",
+      "score": 0,
+      "feedback": "Unable to assess product visibility due to video processing failure."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 0,
+      "feedback": "Unable to assess unboxing first impressions due to video processing failure."
+    }
+  ],
+  "recommendations": [
+    "Please ensure the video file is accessible and in a supported format.",
+    "Verify the URI is correct and the video is not corrupted.",
+    "Retry the analysis with a confirmed working video file."
+  ],
+  "analysisDate": "2025-03-27T14:28:43.116Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "www.prodcut.com",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_visibility",
+      "unboxing_first_impressions"
+    ]
+  },
+  "productPageUrl": "www.prodcut.com"
+}

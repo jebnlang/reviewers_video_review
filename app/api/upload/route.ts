@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { Storage } from '@google-cloud/storage';
 import { v4 as uuidv4 } from 'uuid';
 import type { VideoUploadResponse } from '@/lib/types';
+import { Readable } from 'stream';
 
 const storage = new Storage();
 const bucket = storage.bucket(process.env.GOOGLE_CLOUD_STORAGE_BUCKET || '');
@@ -46,25 +47,28 @@ export async function POST(request: NextRequest): Promise<Response> {
     const filename = `videos/${timestamp}-${safeName}`;
     const blob = bucket.file(filename);
 
-    // Get file buffer
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    // Upload to Cloud Storage
+    // Upload to Cloud Storage using stream piping
     await new Promise((resolve, reject) => {
       const stream = blob.createWriteStream({
-        resumable: false,
+        resumable: false, // Consider setting to true for large files / unreliable networks
         contentType: file.type,
         metadata: {
           originalname: file.name,
-          size: file.size,
+          size: file.size, // Size is still useful metadata, even if not buffering
           uploadedAt: new Date().toISOString(),
         },
       });
 
-      stream.on('error', reject);
+      stream.on('error', (err) => {
+        console.error('GCS Stream Error:', err);
+        reject(new Error('Failed to upload file to storage.')); // More specific error
+      });
       stream.on('finish', resolve);
-      stream.end(buffer);
+
+      // Pipe the file stream directly to the GCS stream
+      const fileStream = file.stream(); // Get a ReadableStream from the File object
+      const nodeStream = Readable.fromWeb(fileStream as any); // Convert to Node.js stream (requires Node >= 18)
+      nodeStream.pipe(stream);
     });
 
     const gcsUri = `gs://${bucket.name}/${filename}`;

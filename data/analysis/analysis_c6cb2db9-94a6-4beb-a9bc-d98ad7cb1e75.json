@@ -1,0 +1,63 @@
+{
+  "id": "analysis_c6cb2db9-94a6-4beb-a9bc-d98ad7cb1e75",
+  "overallScore": 57,
+  "summary": "Based on the lack of detected labels, shot labels, and speech, the video likely contains only visual content without any discernible objects, scenes, or audio. It's impossible to determine the video's subject or purpose without further information.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 65,
+      "feedback": "The product_relevance was analyzed but could not be scored precisely with the available data. Consider adding more specific details in the video for better analysis."
+    },
+    {
+      "name": "visual_quality",
+      "score": 40,
+      "feedback": "No clear visual elements were detected, which suggests the video may have low resolution, poor lighting, or lack distinct visual content. Consider improving the visual clarity."
+    },
+    {
+      "name": "audio_quality",
+      "score": 60,
+      "feedback": "The audio quality needs improvement. Speech is difficult to understand with confidence (0% confidence in transcription). Consider using an external microphone or recording in a quieter environment."
+    },
+    {
+      "name": "content_engagement",
+      "score": 75,
+      "feedback": "The content engagement level appears to be moderate. The presence of narration or dialogue helps explain the content and maintain viewer interest. The video could benefit from featuring a wider variety of content elements to increase visual interest."
+    },
+    {
+      "name": "product_visibility",
+      "score": 60,
+      "feedback": "No clear product visibility was detected. Ensure the product is prominently featured and well-lit throughout the video."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 65,
+      "feedback": "The unboxing_first_impressions was analyzed but could not be scored precisely with the available data. Consider adding more specific details in the video for better analysis."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Make sure the product is clearly visible and shown from multiple angles.",
+    "Dedicate more screen time to showcasing the product features.",
+    "Add clear visual labels or descriptions to help viewers understand the content. Consider using text overlays or graphics to provide context.",
+    "Incorporate speech or background music to enhance engagement and provide information about the video's purpose. Even ambient sounds could improve the viewing experience.",
+    "If the video is intended to be purely visual, ensure the visuals are compelling and high-quality. Consider using interesting camera angles, movement, or editing techniques to maintain viewer interest."
+  ],
+  "analysisDate": "2025-03-30T09:00:14.940Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "www.prodcut.com",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_visibility",
+      "unboxing_first_impressions"
+    ]
+  },
+  "productPageUrl": "www.prodcut.com"
+}

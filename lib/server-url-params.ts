@@ -10,13 +10,13 @@ export function urlParamsToSettings(
   const defaultCategories = ["product_relevance", "visual_quality", "audio_quality", "content_engagement"];
   
   // Extract admin settings from URL parameters
-  const categories = typeof searchParams.categories === 'string' 
+  const categories = typeof searchParams?.categories === 'string' 
     ? searchParams.categories.split(',') 
     : defaultCategories;
     
-  const productUrl = typeof searchParams.productUrl === 'string' ? searchParams.productUrl : "";
+  const productUrl = typeof searchParams?.productUrl === 'string' ? searchParams.productUrl : "";
   
-  const productDesc = typeof searchParams.productDesc === 'string' 
+  const productDesc = typeof searchParams?.productDesc === 'string' 
     ? decodeURIComponent(searchParams.productDesc) 
     : "";
   

@@ -1,0 +1,31 @@
+{
+  "id": "analysis_1743362552001_wmb47mp8i",
+  "overallScore": 69,
+  "summary": "The video appears to showcase a puppy, specifically a Labrador Retriever. The puppy is the primary subject, and the video likely focuses on its appearance and behavior as a pet.",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 70,
+      "feedback": "The visual quality needs improvement. Many elements are difficult to identify with confidence (0% confidence in detections). Consider better lighting, camera focus, or higher resolution."
+    },
+    {
+      "name": "audio_quality",
+      "score": 60,
+      "feedback": "No speech was detected in the video. If there should be narration or dialogue, check your audio recording equipment or consider adding voice-over."
+    },
+    {
+      "name": "content_engagement",
+      "score": 75,
+      "feedback": "The content engagement level appears to be moderate. The video contains 1 scene changes, which may make the content feel static. Consider adding more dynamic elements. The absence of narration may make it difficult for viewers to fully understand the content. Consider adding explanatory voice-over. The video could benefit from featuring a wider variety of content elements to increase visual interest."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Add audio, even simple sounds like the puppy playing or background music, to enhance engagement.",
+    "Include interaction with the puppy, such as petting or playing, to show its personality and create a more compelling narrative."
+  ],
+  "analysisDate": "2025-03-30T19:22:48.157Z",
+  "videoLength": "00:21",
+  "adminSettings": null
+}

@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743085509131_m26cqi14t",
+  "overallScore": 78,
+  "summary": "The video is a decent unboxing and review, but could benefit from improved audio clarity and more engaging visuals. The product is clearly presented, but the presentation style is a bit static.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 90,
+      "feedback": "The video is entirely focused on the product being unboxed and reviewed. The content is highly relevant to the product."
+    },
+    {
+      "name": "visual_quality",
+      "score": 75,
+      "feedback": "The video quality is generally good, but could be sharper. The lighting is adequate, but a more controlled environment would improve the overall aesthetic. Framing is acceptable, but could be more dynamic."
+    },
+    {
+      "name": "audio_quality",
+      "score": 65,
+      "feedback": "The audio is understandable, but there's noticeable background noise and a slight echo. Using an external microphone would significantly improve the audio clarity."
+    },
+    {
+      "name": "content_engagement",
+      "score": 70,
+      "feedback": "The content is informative, but the presentation could be more engaging. The reviewer could use more varied language and visual aids to keep the audience interested. Consider adding B-roll footage or on-screen graphics."
+    },
+    {
+      "name": "product_visibility",
+      "score": 95,
+      "feedback": "The product is consistently visible throughout the video. Close-up shots highlight key features effectively."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 85,
+      "feedback": "The unboxing segment is well-executed, showcasing the packaging and initial presentation of the product. The reviewer's initial reactions are genuine and provide valuable insight."
+    },
+    {
+      "name": "presentation_style",
+      "score": 70,
+      "feedback": "The presentation is straightforward and informative, but lacks dynamism. The reviewer could benefit from using more gestures, varying their tone, and incorporating visual aids to enhance engagement."
+    }
+  ],
+  "recommendations": [
+    "Invest in an external microphone to improve audio quality.",
+    "Use better lighting and a more controlled filming environment.",
+    "Incorporate B-roll footage or on-screen graphics to enhance visual engagement.",
+    "Vary the presentation style to be more dynamic and engaging.",
+    "Consider adding background music (royalty-free) to fill audio gaps and improve the overall viewing experience."
+  ],
+  "analysisDate": "2025-03-27T14:25:09.131Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "www.prodcut.com",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_visibility",
+      "unboxing_first_impressions"
+    ]
+  },
+  "productPageUrl": "www.prodcut.com"
+}

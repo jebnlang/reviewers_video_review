@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 import VideoAnalysisResults from "@/components/video-analysis-results"
 import VideoRevisionRequest from "@/components/video-revision-request"
 import AdminSettingsButton from "@/components/admin-settings-button"
+import AnalysisLoading from "@/components/analysis-loading"
 import { getVideoAnalysis } from "@/lib/actions"
 import { urlParamsToSettings } from "@/lib/server-url-params"
-import type { AdminSettings } from "@/lib/types"
+import type { AdminSettings, VideoAnalysisResult, AnalysisStatus } from "@/lib/types"
 
 export const metadata: Metadata = {
   title: "Video Analysis Results",
@@ -16,36 +17,43 @@ export const metadata: Metadata = {
 }
 
 interface ResultsPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     decision?: string
     notes?: string
     categories?: string
     productUrl?: string
     productDesc?: string
-  }
+  }>
+}
+
+// Type guard to check if result is a VideoAnalysisResult
+function isVideoAnalysisResult(result: any): result is VideoAnalysisResult {
+  return result && 'overallScore' in result;
 }
 
 export default async function ResultsPage({ params, searchParams }: ResultsPageProps) {
+  // Await both params and searchParams
+  const [resolvedParams, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams
+  ])
+
   // Extract and validate the ID
-  const id = params?.id
+  const id = resolvedParams?.id
   if (!id) notFound()
 
   // Extract other parameters with defaults
-  const decision = searchParams?.decision || "pass"
-  const revisionNotes = searchParams?.notes || ""
+  const decision = resolvedSearchParams?.decision || "pass"
+  const revisionNotes = resolvedSearchParams?.notes || ""
   
   // Extract admin settings from URL parameters using the server-side utility
-  const adminSettings = urlParamsToSettings(searchParams)
+  const adminSettings = urlParamsToSettings(resolvedSearchParams)
   
   // In a real app, fetch the analysis results from your database
   const analysisResults = await getVideoAnalysis(id, decision, adminSettings)
-
-  if (!analysisResults) {
-    notFound()
-  }
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 md:px-6">
@@ -59,10 +67,16 @@ export default async function ResultsPage({ params, searchParams }: ResultsPageP
           </Button>
         </div>
 
-        {decision === "revision" ? (
-          <VideoRevisionRequest results={analysisResults} revisionNotes={decodeURIComponent(revisionNotes)} />
+        {!analysisResults || ('status' in analysisResults && analysisResults.status === 'processing') ? (
+          <AnalysisLoading id={id} />
+        ) : isVideoAnalysisResult(analysisResults) ? (
+          decision === "revision" ? (
+            <VideoRevisionRequest results={analysisResults} revisionNotes={decodeURIComponent(revisionNotes)} />
+          ) : (
+            <VideoAnalysisResults results={analysisResults} />
+          )
         ) : (
-          <VideoAnalysisResults results={analysisResults} />
+          notFound()
         )}
 
         <AdminSettingsButton />

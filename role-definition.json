@@ -1,0 +1,1 @@
+{"title":"Video Analysis Service Role","description":"Custom role for video analysis service with storage and Vertex AI permissions","includedPermissions":["storage.objects.create","storage.objects.get","storage.objects.list","aiplatform.endpoints.predict","aiplatform.models.get","aiplatform.models.list"],"stage":"GA"}

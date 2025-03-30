@@ -187,6 +187,7 @@ export function VideoReviewForm() {
       console.log('Upload response status:', response.status);
       const responseData = await response.json();
       console.log('Upload response data:', responseData);
+      console.log('Received GCS URI:', responseData.gcsUri);
 
       if (!response.ok) {
         throw new Error(responseData.error || 'Upload failed');
@@ -216,6 +217,11 @@ export function VideoReviewForm() {
 
     try {
       setIsAnalyzing(true)
+      console.log('Starting analysis with GCS URI:', gcsUri);
+      
+      // Generate analysis ID here
+      const analysisId = `analysis_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: {
@@ -223,25 +229,24 @@ export function VideoReviewForm() {
         },
         body: JSON.stringify({ 
           gcsUri,
-          adminSettings // Include admin settings if available
+          adminSettings,
+          analysisId
         }),
       })
 
-      const data = await response.json()
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Analysis failed')
-      }
+      // Check for 202 Accepted status, indicating analysis started
+      if (response.status === 202) {
+        const data = await response.json();
+        console.log('Analysis started response:', data);
 
-      if (!data.success) {
-        throw new Error(data.error || 'Analysis failed')
-      }
-
-      // If we have a result, redirect to the results page
-      if (data.result) {
-        const { id, overallScore } = data.result
-        // Redirect to results page with the analysis ID
-        router.push(`/results/${id}`)
+        // Use the same analysis ID we generated
+        console.log(`Redirecting to results for analysis ID: ${analysisId}`);
+        router.push(`/results/${analysisId}`);
+      } else {
+        // Handle other potential success/error responses if API changes
+        const data = await response.json(); // Attempt to parse body for error details
+        console.error('Analysis initiation failed:', response.status, data);
+        throw new Error(data?.error || `Analysis initiation failed with status ${response.status}`);
       }
 
     } catch (error) {
@@ -249,10 +254,14 @@ export function VideoReviewForm() {
       setUploadState(prev => ({
         ...prev,
         status: 'error',
-        error: error instanceof Error ? error.message : 'Failed to analyze video'
+        error: error instanceof Error ? error.message : 'Failed to start video analysis'
       }))
     } finally {
-      setIsAnalyzing(false)
+      if (uploadState.status !== 'error') {
+        // Don't set isAnalyzing false if redirect was successful, page will change anyway
+      } else {
+        setIsAnalyzing(false);
+      }
     }
   }
 
