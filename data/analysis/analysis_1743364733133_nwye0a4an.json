@@ -1,0 +1,92 @@
+{
+  "id": "analysis_1743364733133_nwye0a4an",
+  "overallScore": 57,
+  "summary": "The video appears to be a silent review of a pet treat product, likely from Chewy.com, as indicated by the provided link. Without speech, it's difficult to assess the reviewer's sentiment or specific details about the product experience.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 10,
+      "feedback": "The video is directly related to the product category (pet treats)."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "Cannot determine visual quality without seeing the video. Assuming average quality since no issues were detected."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech detected, so audio quality is not applicable."
+    },
+    {
+      "name": "Content engagement",
+      "score": 2,
+      "feedback": "Without speech, the engagement is likely low. It's difficult to gauge interest without any narration or demonstration."
+    },
+    {
+      "name": "Talking head presence",
+      "score": 1,
+      "feedback": "No speech detected, so it's unlikely there's a traditional talking head segment."
+    },
+    {
+      "name": "Product visibility",
+      "score": 5,
+      "feedback": "Cannot determine product visibility without seeing the video. Assuming average visibility since no issues were detected."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 3,
+      "feedback": "Difficult to assess if there's a demonstration without speech. It might show the pet eating the treat, but it's unclear."
+    },
+    {
+      "name": "Unboxing or first impressions",
+      "score": 2,
+      "feedback": "Unlikely to have unboxing or first impressions without any verbal commentary."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so there's no brand mention."
+    },
+    {
+      "name": "Product mention",
+      "score": 1,
+      "feedback": "No speech detected, so there's no product mention."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so there's no call to action."
+    },
+    {
+      "name": "Reviewer sentiment",
+      "score": 1,
+      "feedback": "Impossible to determine reviewer sentiment without speech."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Encourage reviewers to include a verbal component in their reviews, even if it's just a brief description of their pet's reaction.",
+    "Provide guidelines to reviewers on how to best showcase the product and its use, such as demonstrating the pet eating the treat."
+  ],
+  "analysisDate": "2025-03-30T19:59:51.716Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "https://www.chewy.com/b/treats-335",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://www.chewy.com/b/treats-335"
+}

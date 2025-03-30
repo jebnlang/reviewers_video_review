@@ -28,12 +28,23 @@ export async function analyzeVideo(
   analysisId?: string
 ): Promise<VideoAnalysisResult> {
   try {
-    console.log('Starting video analysis with GCS URI:', gcsUri);
-    console.log('Admin settings:', adminSettings);
+    console.log('=== Starting Video Analysis Process ===');
+    console.log('Input Parameters:', {
+      gcsUri,
+      analysisId,
+      adminSettings: {
+        ...adminSettings,
+        selectedCategories: adminSettings?.selectedCategories || [],
+        productPageUrl: adminSettings?.productPageUrl || 'Not provided'
+      }
+    });
 
     // Define features to detect based on selected categories
     const features = determineFeatures(adminSettings);
-    console.log('Using Video Intelligence features:', features);
+    console.log('Selected Video Intelligence Features:', {
+      features: features.map(f => Feature[f]),
+      reason: 'Based on admin settings categories'
+    });
     
     // Configure the request to Video Intelligence API
     const request: IAnnotateVideoRequest = {
@@ -47,15 +58,28 @@ export async function analyzeVideo(
       },
     };
     
-    console.log('Sending request to Video Intelligence API...');
+    console.log('Video Intelligence API Request Configuration:', {
+      request,
+      timestamp: new Date().toISOString()
+    });
     
     // Make the API call - this returns a long-running operation
+    console.log('Initiating Video Intelligence API call...');
     const operation = await videoIntelligenceClient.annotateVideo(request);
-    console.log('Received operation, waiting for completion...');
+    console.log('Received operation response:', {
+      operationName: operation[0].name,
+      metadata: operation[0].metadata,
+      timestamp: new Date().toISOString()
+    });
     
     // Wait for the operation to complete
+    console.log('Waiting for Video Intelligence operation to complete...');
     const [operationResult] = await operation[0].promise();
-    console.log('Video analysis operation completed');
+    console.log('Video Intelligence operation completed:', {
+      status: 'SUCCESS',
+      timestamp: new Date().toISOString(),
+      resultSize: JSON.stringify(operationResult).length + ' bytes'
+    });
     
     // Get the first (and typically only) result
     const annotationResults = operationResult.annotationResults?.[0] as EnhancedVideoAnnotationResults;
@@ -63,26 +87,62 @@ export async function analyzeVideo(
       throw new Error('No annotation results returned from Video Intelligence API');
     }
     
+    console.log('Raw Video Intelligence Results:', {
+      labelAnnotationsCount: annotationResults.labelAnnotations?.length || 0,
+      shotLabelAnnotationsCount: annotationResults.shotLabelAnnotations?.length || 0,
+      frameLabelAnnotationsCount: annotationResults.frameLabelAnnotations?.length || 0,
+      speechTranscriptionsCount: annotationResults.speechTranscriptions?.length || 0,
+      shotAnnotationsCount: annotationResults.shotAnnotations?.length || 0,
+      explicitAnnotationFrames: annotationResults.explicitAnnotation?.frames?.length || 0
+    });
+    
     // Process the results and convert to our application format
-    console.log('Processing Video Intelligence results...');
+    console.log('Processing Video Intelligence results into application format...');
     const analysis = processVideoIntelligenceResults(annotationResults, gcsUri, adminSettings, analysisId);
+    console.log('Initial analysis results:', {
+      id: analysis.id,
+      overallScore: analysis.overallScore,
+      categoriesCount: analysis.categories.length,
+      recommendationsCount: analysis.recommendations.length,
+      videoLength: analysis.videoLength
+    });
     
     // Enhance the analysis with AI-generated observations
+    console.log('Starting AI enhancement process...');
     await enhanceAnalysisWithAI(analysis, annotationResults, gcsUri, adminSettings);
+    console.log('AI enhancement completed:', {
+      finalCategoriesCount: analysis.categories.length,
+      finalRecommendationsCount: analysis.recommendations.length,
+      hasAISummary: !!analysis.summary
+    });
 
     // Save the analysis results to a file
     const analysisDir = path.join(process.cwd(), 'data', 'analysis');
     await fs.mkdir(analysisDir, { recursive: true });
+    const analysisPath = path.join(analysisDir, `${analysis.id}.json`);
     await fs.writeFile(
-      path.join(analysisDir, `${analysis.id}.json`),
+      analysisPath,
       JSON.stringify(analysis, null, 2)
     );
-    console.log('Analysis saved to file');
+    console.log('Analysis saved to file:', {
+      path: analysisPath,
+      sizeBytes: JSON.stringify(analysis).length
+    });
 
+    console.log('=== Video Analysis Process Completed Successfully ===');
     return analysis;
   } catch (error: unknown) {
-    console.error('Analysis error:', error);
-    console.error('Failed GCS URI:', gcsUri);
+    console.error('=== Video Analysis Process Failed ===');
+    console.error('Error Details:', {
+      type: error instanceof Error ? error.constructor.name : 'Unknown',
+      message: error instanceof Error ? error.message : 'Unknown error occurred',
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    console.error('Failed Analysis Parameters:', {
+      gcsUri,
+      analysisId,
+      adminSettingsProvided: !!adminSettings
+    });
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
     throw new Error(`Failed to analyze video: ${errorMessage}`);
   }
@@ -632,48 +692,87 @@ async function enhanceAnalysisWithAI(
   adminSettings?: AdminSettings
 ): Promise<void> {
   try {
+    console.log('=== Starting AI Enhancement Process ===');
+    
     // Extract key information from the video analysis results
     const labelDescs = (annotationResults.labelAnnotations || [])
       .map(label => label.entity?.description)
-      .filter(Boolean)
-      .join(', ');
+      .filter(Boolean);
+    console.log('Extracted Labels:', {
+      count: labelDescs.length,
+      labels: labelDescs
+    });
       
     const shotLabelDescs = (annotationResults.shotLabelAnnotations || [])
       .map(label => label.entity?.description)
-      .filter(Boolean)
-      .join(', ');
+      .filter(Boolean);
+    console.log('Extracted Shot Labels:', {
+      count: shotLabelDescs.length,
+      labels: shotLabelDescs
+    });
       
     const transcriptTexts = (annotationResults.speechTranscriptions || [])
       .flatMap(t => (t.alternatives || []).map(alt => alt.transcript))
-      .filter(Boolean)
-      .join(' ');
+      .filter(Boolean);
+    console.log('Extracted Transcripts:', {
+      count: transcriptTexts.length,
+      totalLength: transcriptTexts.join(' ').length,
+      sample: transcriptTexts?.[0]?.substring(0, 100) + '...' || 'No transcript'
+    });
       
     // Limit transcript length
-    const truncatedTranscript = transcriptTexts.length > 500 
-      ? transcriptTexts.substring(0, 500) + '...' 
-      : transcriptTexts;
+    const truncatedTranscript = transcriptTexts.join(' ').length > 500 
+      ? transcriptTexts.join(' ').substring(0, 500) + '...' 
+      : transcriptTexts.join(' ');
+    
+    console.log('Preparing AI Prompt:', {
+      hasProductUrl: !!adminSettings?.productPageUrl,
+      selectedCategories: adminSettings?.selectedCategories || [],
+      transcriptLength: truncatedTranscript.length
+    });
       
     // Create a prompt for the AI to enhance the analysis
-    const prompt = `You are a professional video content reviewer. I have analyzed a video and detected the following:
+    const prompt = `You are a merchant analyzing a video review of your product. This video was created by a genuine customer who received a sample product from you. ${adminSettings?.productPageUrl ? `For more information about the product being reviewed, visit: ${adminSettings.productPageUrl}` : ''}
+
+I have analyzed the video and detected the following:
     
-Labels: ${labelDescs || 'None detected'}
-Shot Labels: ${shotLabelDescs || 'None detected'}
+Labels: ${labelDescs.join(', ')}
+Shot Labels: ${shotLabelDescs.join(', ')}
 Speech Transcript: "${truncatedTranscript || 'No speech detected'}"
 
-Based solely on this detected content, please provide:
-1. A 2-3 sentence summary of what the video appears to show
-2. 2-3 recommendations for improving the video quality or engagement
-3. A brief assessment of the video's strengths and weaknesses
+Based solely on this detected content, please provide an analysis on the following categories ${adminSettings?.selectedCategories?.length ? '(focusing only on these selected categories: ' + adminSettings.selectedCategories.join(', ') + ')' : ''}:
+
+- Product relevance: How relevant is the content to your product?
+- Visual quality: How clear and visually appealing is the video?
+- Audio quality: How clear and audible is the speech/sound?
+- Content engagement: How engaging and interesting is the content?
+- Talking head presence: Does the reviewer show their face and talk directly to the camera?
+- Product visibility: How well is the product shown in the video?
+- Use case demonstration: Does the reviewer demonstrate actual usage of the product?
+- Unboxing or first impressions: Does the reviewer show the unboxing experience or initial impressions?
+- Brand mention: Does the reviewer mention your brand name?
+- Product mention: Does the reviewer mention the product name?
+- Call to action (CTA): Does the reviewer include any calls to action?
+
+For each relevant category, provide a score from 1-10 and brief feedback. Remember that these are authentic reviews from regular people, not professional video creators, so don't be overly strict about production quality.
 
 Format your response as JSON:
 {
-  "summary": "your summary here",
+  "summary": "2-3 sentence summary of the video content",
   "recommendations": ["recommendation 1", "recommendation 2"],
-  "assessment": {
-    "strengths": ["strength 1", "strength 2"],
-    "weaknesses": ["weakness 1", "weakness 2"]
-  }
+  "categories": [
+    {
+      "name": "category name",
+      "score": number between 1-10,
+      "feedback": "brief feedback about this aspect"
+    }
+  ]
 }`;
+
+    console.log('Sending request to Vertex AI:', {
+      promptLength: prompt.length,
+      timestamp: new Date().toISOString()
+    });
 
     // Generate content using Vertex AI
     const request = {
@@ -686,43 +785,81 @@ Format your response as JSON:
     const result = await model.generateContent(request);
     const response = await result.response;
     
+    console.log('Received Vertex AI Response:', {
+      hasResponse: !!response,
+      candidatesCount: response.candidates?.length || 0,
+      timestamp: new Date().toISOString()
+    });
+    
     if (!response.candidates?.[0]?.content?.parts?.[0]?.text) {
-      console.log('No enhancement content generated from AI');
+      console.warn('No enhancement content generated from AI:', {
+        response: JSON.stringify(response),
+        timestamp: new Date().toISOString()
+      });
       return;
     }
     
     const enhancementText = response.candidates[0].content.parts[0].text;
-    console.log('Complete AI Analysis Response:', enhancementText);
+    console.log('AI Response Text:', {
+      length: enhancementText.length,
+      preview: enhancementText.substring(0, 100) + '...'
+    });
     
     // Parse the AI response
     try {
+      console.log('Attempting to parse AI response as JSON...');
       const jsonMatch = enhancementText.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         const enhancementData = JSON.parse(jsonMatch[0]);
-        console.log('Parsed AI Analysis Data:', JSON.stringify(enhancementData, null, 2));
+        console.log('Successfully parsed AI response:', {
+          hasSummary: !!enhancementData.summary,
+          recommendationsCount: enhancementData.recommendations?.length || 0,
+          categoriesCount: enhancementData.categories?.length || 0
+        });
         
         // Update the analysis with AI-enhanced data
         if (enhancementData.summary) {
           analysis.summary = enhancementData.summary;
+          console.log('Updated analysis summary');
         }
         
-        if (enhancementData.recommendations && enhancementData.recommendations.length > 0) {
-          // Add AI recommendations to existing ones
+        if (enhancementData.recommendations?.length > 0) {
+          const originalCount = analysis.recommendations.length;
           analysis.recommendations = [
             ...analysis.recommendations,
             ...enhancementData.recommendations.filter((r: string) => !analysis.recommendations.includes(r))
           ];
+          console.log('Updated recommendations:', {
+            originalCount,
+            newCount: analysis.recommendations.length,
+            addedCount: analysis.recommendations.length - originalCount
+          });
         }
 
-        // Log the final enhanced analysis
-        console.log('Final Enhanced Analysis:', JSON.stringify(analysis, null, 2));
+        if (enhancementData.categories?.length > 0) {
+          analysis.categories = enhancementData.categories;
+          console.log('Updated categories:', {
+            count: enhancementData.categories.length,
+            categoryNames: enhancementData.categories.map((c: any) => c.name)
+          });
+        }
+
+        console.log('AI Enhancement Successfully Applied');
+      } else {
+        console.warn('No JSON object found in AI response');
       }
     } catch (parseError) {
-      console.error('Error parsing AI enhancement:', parseError);
-      console.error('Raw text that failed to parse:', enhancementText);
+      console.error('Failed to parse AI enhancement:', {
+        error: parseError instanceof Error ? parseError.message : 'Unknown parse error',
+        rawText: enhancementText
+      });
     }
   } catch (error) {
-    console.error('Error enhancing analysis with AI:', error);
-    // Continue without enhancement
+    console.error('AI Enhancement Process Failed:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    });
   }
+  console.log('=== AI Enhancement Process Completed ===');
 } 

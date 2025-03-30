@@ -1,0 +1,70 @@
+{
+  "id": "analysis_1743364309057_hm1kzymy8",
+  "overallScore": 69,
+  "summary": "The video features a Labrador Retriever, likely interacting with or near the product. Since there's no speech, the product's role is unclear, but the presence of a pet suggests it might be pet-related. The visual quality focuses on the dog.",
+  "categories": [
+    {
+      "name": "Product_relevance",
+      "score": 2,
+      "feedback": "Low relevance based on the information provided. The presence of a dog suggests a possible pet-related product, but without audio or clearer visuals, it's difficult to assess the connection."
+    },
+    {
+      "name": "Visual_quality",
+      "score": 7,
+      "feedback": "The visual quality seems decent, focusing on the dog. Clarity and appeal are likely good for showcasing the animal."
+    },
+    {
+      "name": "Audio_quality",
+      "score": 1,
+      "feedback": "No speech detected, so the audio quality is irrelevant in this case."
+    },
+    {
+      "name": "Content_engagement",
+      "score": 5,
+      "feedback": "Dogs are generally engaging, but without context or product interaction, the engagement level is moderate."
+    },
+    {
+      "name": "Use_case_demonstration",
+      "score": 1,
+      "feedback": "No use case demonstration is apparent from the provided information."
+    },
+    {
+      "name": "Brand_mention",
+      "score": 1,
+      "feedback": "No brand mention detected."
+    },
+    {
+      "name": "Reviewer_sentiment",
+      "score": 5,
+      "feedback": "Sentiment is neutral due to the lack of speech. It's impossible to gauge the reviewer's feelings without audio or visual cues beyond the presence of the dog."
+    },
+    {
+      "name": "Call_to_action",
+      "score": 1,
+      "feedback": "No call to action detected."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "If possible, obtain the original audio or a transcript to understand the context and product relevance.",
+    "Analyze the video frames more closely to identify the product and its interaction with the dog."
+  ],
+  "analysisDate": "2025-03-30T19:52:32.707Z",
+  "videoLength": "00:21",
+  "adminSettings": {
+    "productPageUrl": "www.prodcut.com",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "www.prodcut.com"
+}

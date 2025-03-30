@@ -1,0 +1,48 @@
+{
+  "id": "analysis_1743363961387_hseu7d427",
+  "overallScore": 57,
+  "summary": "This video review presents a challenge for analysis due to the absence of speech and detected labels. The lack of audio limits understanding of the reviewer's thoughts and feelings about the product, making it difficult to gauge engagement and relevance.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 5,
+      "feedback": "Without audio or labels, it's difficult to definitively determine the relevance. Assuming the video focuses on the product received as a sample, it has some relevance, but the degree is unknown."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "Cannot be accurately assessed without further information. The visual quality is unknown."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "Audio quality is extremely poor as no speech was detected. This severely limits the review's usefulness."
+    },
+    {
+      "name": "Content engagement",
+      "score": 2,
+      "feedback": "Engagement is likely low due to the lack of audio. It's hard to gauge interest without hearing the reviewer's thoughts."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Attempt to obtain a version of the video with audio to fully understand the customer's feedback.",
+    "Analyze the visual aspects of the video more closely to infer product usage and customer reaction, if possible."
+  ],
+  "analysisDate": "2025-03-30T19:46:30.982Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement"
+    ]
+  },
+  "productPageUrl": ""
+}

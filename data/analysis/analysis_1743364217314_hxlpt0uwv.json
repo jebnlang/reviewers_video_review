@@ -1,0 +1,70 @@
+{
+  "id": "analysis_1743364217314_hxlpt0uwv",
+  "overallScore": 69,
+  "summary": "The video appears to feature a dog, specifically a Labrador Retriever puppy. There is no speech detected, so the review relies solely on visuals of the dog, presumably interacting with or around the product. The presence of a dog suggests the product might be related to pets.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 6,
+      "feedback": "The presence of a dog strongly suggests the product is pet-related, but the exact relevance is unclear without audio or visual context showing the product. It could be dog food, a toy, a bed, or something else entirely."
+    },
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The shot labels indicate the video focuses on the dog, which suggests the visual quality is decent enough to identify the breed and features. However, the quality in terms of product visibility and clarity is unknown."
+    },
+    {
+      "name": "audio_quality",
+      "score": 1,
+      "feedback": "No speech detected. Audio quality is therefore non-existent."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "Puppies are generally engaging, but without context or narration, the overall engagement is limited. The lack of audio significantly impacts the content's ability to hold attention."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 2,
+      "feedback": "Without visual confirmation of the product and the dog's interaction with it, there's minimal use case demonstration. We can only infer potential usage based on the dog's presence."
+    },
+    {
+      "name": "brand_mention",
+      "score": 1,
+      "feedback": "No brand mention is detected, likely due to the absence of speech."
+    },
+    {
+      "name": "reviewer_sentiment",
+      "score": 5,
+      "feedback": "Sentiment is impossible to determine without audio or visual cues beyond the presence of a cute puppy. It's neutral by default."
+    },
+    {
+      "name": "call_to_action",
+      "score": 1,
+      "feedback": "No call to action is present due to the lack of speech."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "If possible, obtain a version of the video with audio to understand the reviewer's explicit opinions and experiences.",
+    "Consider asking the reviewer to add a text overlay with their thoughts if adding audio is not feasible."
+  ],
+  "analysisDate": "2025-03-30T19:50:36.134Z",
+  "videoLength": "00:21",
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": ""
+}

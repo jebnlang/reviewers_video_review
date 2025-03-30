@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743364391660_grk4qbxha",
+  "overallScore": 57,
+  "summary": "Based on the provided data, the video review lacks audio and visual cues, making it difficult to assess its overall quality and effectiveness. The absence of speech and visual labels significantly limits the ability to determine product relevance, reviewer sentiment, and engagement levels.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 1,
+      "feedback": "Without speech or visual cues, it's impossible to determine how relevant the video is to the product being reviewed."
+    },
+    {
+      "name": "Visual quality",
+      "score": 1,
+      "feedback": "No information is available regarding visual clarity or appeal."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "The transcript indicates 'No speech detected,' so audio quality cannot be assessed."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "Without audio or visual cues, it's impossible to determine how engaging the content is."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "Cannot determine if the reviewer demonstrates product usage without visual or audio information."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so brand mention cannot be determined."
+    },
+    {
+      "name": "Reviewer sentiment",
+      "score": 1,
+      "feedback": "Impossible to assess reviewer sentiment without audio or visual cues."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so the presence of a CTA cannot be determined."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Implement speech recognition and object detection to automatically extract relevant information from video reviews.",
+    "Develop a system to analyze visual elements like product close-ups and demonstrations, even without explicit labels."
+  ],
+  "analysisDate": "2025-03-30T19:54:06.359Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "https://www.chewy.com/b/treats-335",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://www.chewy.com/b/treats-335"
+}
