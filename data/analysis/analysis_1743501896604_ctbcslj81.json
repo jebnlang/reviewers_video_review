@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743501896604_ctbcslj81",
+  "overallScore": 8,
+  "summary": "The reviewer loves the perfume and its presentation, describing it as chic and sensual. They also mention that the perfume smells very good and recommend it.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-01T10:05:04.926Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is clear, but the red background is a bit distracting. A plain background would improve the focus on the product."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear and easy to understand. No issues with the sound quality."
+    },
+    {
+      "name": "content_engagement",
+      "score": 7,
+      "feedback": "The review is enthusiastic, but could be more engaging with specific details about the scent and its longevity."
+    },
+    {
+      "name": "product_relevance",
+      "score": 9,
+      "feedback": "The video is entirely focused on the perfume and its attributes, making it highly relevant."
+    },
+    {
+      "name": "product_visibility",
+      "score": 8,
+      "feedback": "The product is clearly visible throughout the video, with good close-ups of the bottle and packaging."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 8,
+      "feedback": "The video captures the unboxing experience well, highlighting the luxurious packaging and the reviewer's positive first impressions."
+    },
+    {
+      "name": "brand_mention",
+      "score": 6,
+      "feedback": "The brand name is visible on the box and bottle, but it's not explicitly mentioned verbally. Stating the brand name would be helpful."
+    }
+  ],
+  "recommendations": [
+    "Consider showing the perfume being sprayed to give viewers a better idea of how it looks and works.",
+    "Mention specific notes or ingredients in the perfume to provide more detail about the scent.",
+    "Include information about where to purchase the perfume to make it easier for viewers to buy it."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_relevance",
+      "product_visibility",
+      "unboxing_first_impressions",
+      "brand_mention"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Este perfume me encantó, me encanta la presentación, es demasiado chic, me gusta, muy sensualona y huele demasiado, demasiado bien, huele muy rico. Recomendado."
+}

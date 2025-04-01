@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743501559306_q3jidl8ll",
+  "overallScore": 8,
+  "summary": "The video shows a woman unboxing and reviewing a perfume. She loves the presentation, finds it very chic, and says the perfume smells very good and is recommended.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-01T09:59:27.453Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is clear and well-lit, making it easy to see the product and its packaging."
+    },
+    {
+      "name": "audio_quality",
+      "score": 9,
+      "feedback": "The audio is clear and easy to understand."
+    },
+    {
+      "name": "content_engagement",
+      "score": 7,
+      "feedback": "The reviewer expresses her enthusiasm for the product, but could add more details to keep the viewer engaged."
+    },
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video focuses entirely on the perfume and its features, ensuring strong product relevance."
+    },
+    {
+      "name": "product_visibility",
+      "score": 10,
+      "feedback": "The perfume is prominently displayed throughout the video, allowing viewers to see its design and packaging clearly."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 9,
+      "feedback": "The reviewer immediately expresses her positive impression of the perfume's presentation and design."
+    },
+    {
+      "name": "brand_mention",
+      "score": 5,
+      "feedback": "The brand name is visible on the packaging, but not explicitly mentioned. A verbal mention would improve this."
+    }
+  ],
+  "recommendations": [
+    "Show the perfume being sprayed to give viewers a better sense of how it's used.",
+    "Mention the specific notes or scent profile of the perfume to give viewers a better idea of the fragrance.",
+    "Include information about the longevity of the scent."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_relevance",
+      "product_visibility",
+      "unboxing_first_impressions",
+      "brand_mention"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Este perfume me encantó, me encanta la presentación, es demasiado chic. Me gusta, muy sensualona y huele demasiado demasiado bien, huele muy rico. Recomendado."
+}

@@ -1,0 +1,58 @@
+{
+  "id": "analysis_1743505081266_6f05qumge",
+  "overallScore": 6,
+  "summary": "The video shows a person demonstrating the Ice Pod, an ice bath product. The person removes the cover to reveal the water inside with ice packs.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-01T10:58:08.431Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is clear and well-lit, but the framing could be improved to focus more on the product."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear, although there is no speech."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "The video lacks a narrative or explanation, making it less engaging."
+    },
+    {
+      "name": "brand_mention",
+      "score": 10,
+      "feedback": "The brand 'The Pod Company' and 'The Ice Pod' are clearly visible throughout the video."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 4,
+      "feedback": "The video shows the product filled with water and ice packs, but does not demonstrate actual use."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 1,
+      "feedback": "This is not an unboxing video."
+    }
+  ],
+  "recommendations": [
+    "Consider adding some commentary to explain the features and benefits of the Ice Pod.",
+    "Show the process of filling the pod with water and ice to make it more informative.",
+    "Include footage of someone actually using the Ice Pod to demonstrate its intended use."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "brand_mention",
+      "use_case_demonstration",
+      "unboxing_first_impressions"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}

@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743501690007_3o0j5hihq",
+  "overallScore": 8,
+  "summary": "The video shows a person opening a cold plunge tub from The Pod Company. The tub is filled with water and has ice packs inside to keep it cold.",
+  "videoLength": "00:14",
+  "analysisDate": "2025-04-01T10:01:38.505Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is clear and well-lit, but the framing could be improved to better showcase the product."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear, though there is no speech. Perhaps add some background music or narration."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "The video is short and shows the product, but lacks any engaging elements like a demonstration or personal experience."
+    },
+    {
+      "name": "product_relevance",
+      "score": 9,
+      "feedback": "The video clearly showcases the cold plunge tub and its features, making it highly relevant to the product."
+    },
+    {
+      "name": "product_visibility",
+      "score": 10,
+      "feedback": "The product is prominently displayed throughout the video, with clear shots of its design and features."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 4,
+      "feedback": "The video skips the unboxing process and directly shows the filled tub. Including the unboxing would improve the first impressions."
+    },
+    {
+      "name": "brand_mention",
+      "score": 10,
+      "feedback": "The brand \"The Pod Company\" is clearly visible on the product and its accessories."
+    }
+  ],
+  "recommendations": [
+    "Add some commentary about the product, such as your initial thoughts or how you plan to use it.",
+    "Show the process of filling the tub, or any setup required.",
+    "Include some footage of you using the tub to make the video more engaging."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_relevance",
+      "product_visibility",
+      "unboxing_first_impressions",
+      "brand_mention"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}
