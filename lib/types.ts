@@ -6,7 +6,7 @@ export interface VideoAnalysisCategory {
 
 export interface VideoAnalysisResult {
   id: string
-  overallScore: number
+  overallScore: number | null
   summary: string
   videoLength: string
   analysisDate: string
@@ -14,6 +14,7 @@ export interface VideoAnalysisResult {
   recommendations: string[]
   productPageUrl?: string
   adminSettings?: AdminSettings
+  scoreError?: string
 }
 
 export interface AdminSettings {

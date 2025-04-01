@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743498718752_pfvnhsimf",
+  "overallScore": 2,
+  "summary": "The video shows a shot of water, potentially related to the Chillpod. Since there is no speech, it's difficult to ascertain the context or the reviewer's opinion.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 2,
+      "feedback": "The presence of water suggests potential relevance to the Chillpod, but without further context, it's difficult to determine the extent."
+    },
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "Assuming the water shot is clear and well-framed, the visual quality is likely decent. However, without seeing the actual video, this is an assumption."
+    },
+    {
+      "name": "audio_quality",
+      "score": 1,
+      "feedback": "No speech was detected, so the audio quality is essentially non-existent in terms of review content."
+    },
+    {
+      "name": "content_engagement",
+      "score": 1,
+      "feedback": "Without speech or context, the content is unlikely to be engaging."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 1,
+      "feedback": "There's no demonstration of product usage based on the detected content."
+    },
+    {
+      "name": "brand_mention",
+      "score": 1,
+      "feedback": "No speech was detected, so there's no brand mention."
+    },
+    {
+      "name": "reviewer_sentiment",
+      "score": 1,
+      "feedback": "Impossible to determine reviewer sentiment without speech or context."
+    },
+    {
+      "name": "call_to_action",
+      "score": 1,
+      "feedback": "No call to action is present due to the absence of speech."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Encourage reviewers to include speech in their videos to provide context and opinions.",
+    "Provide reviewers with specific prompts or questions to address in their videos to ensure key product features are highlighted."
+  ],
+  "analysisDate": "2025-04-01T09:12:33.052Z",
+  "videoLength": "00:14",
+  "adminSettings": {
+    "productPageUrl": "https://therapyzone.co.il/products/chillpod",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://therapyzone.co.il/products/chillpod"
+}

@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743497218975_sdiq0kkrn",
+  "overallScore": 66,
+  "summary": "The video appears to show water, potentially related to the product. However, there is no speech detected, making it difficult to ascertain the context or purpose of the video.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 2,
+      "feedback": "The relevance is unclear. The presence of 'water' could be related to the treats (e.g., hydration, soaking), but without context, it's difficult to determine."
+    },
+    {
+      "name": "Visual quality",
+      "score": 7,
+      "feedback": "The video contains a shot of water. Assuming the water is clear and well-lit, the visual quality is likely decent. However, without seeing the video, this is an assumption."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech detected. Audio quality is therefore non-existent."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "Without speech or context, the content is not engaging."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "Impossible to assess use case demonstration without speech or more visual information."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so no brand mention is likely."
+    },
+    {
+      "name": "Reviewer sentiment",
+      "score": 1,
+      "feedback": "Impossible to determine sentiment without speech or context."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so no call to action."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Request the reviewer to add a voiceover or captions to explain the video content.",
+    "Follow up with the reviewer to understand the context of the 'water' shot and its relevance to the product."
+  ],
+  "analysisDate": "2025-04-01T08:47:45.261Z",
+  "videoLength": "00:14",
+  "adminSettings": {
+    "productPageUrl": "https://www.chewy.com/b/treats-335",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://www.chewy.com/b/treats-335"
+}

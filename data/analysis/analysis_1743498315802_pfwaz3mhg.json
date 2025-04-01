@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743498315802_pfwaz3mhg",
+  "overallScore": 2,
+  "summary": "The video shows a shot of water. There is no speech detected. It's difficult to ascertain the video's purpose or relevance to the product without further information.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 1,
+      "feedback": "Without speech or more context, it's impossible to determine the relevance of a shot of water to the product."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "The visual quality is unknown beyond the presence of water in the shot. Clarity and composition are not assessable."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech was detected, so the audio quality is essentially non-existent."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "A single shot of water with no context is unlikely to be engaging."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "There is no use case demonstration evident."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech was detected, so no brand mention is present."
+    },
+    {
+      "name": "Reviewer sentiment",
+      "score": 1,
+      "feedback": "Sentiment cannot be determined without any speech or context."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech was detected, so no call to action is present."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Request clarification from the reviewer regarding the video's content and its connection to the product.",
+    "If possible, obtain additional video footage or information to better understand the review."
+  ],
+  "analysisDate": "2025-04-01T09:06:24.899Z",
+  "videoLength": "00:14",
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": ""
+}

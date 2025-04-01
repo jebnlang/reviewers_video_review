@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743498034088_l2s210pty",
+  "overallScore": 2,
+  "summary": "The video shows a shot of water. There is no speech. It's difficult to determine the product's relevance or the reviewer's sentiment without more information.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 1,
+      "feedback": "Without speech or further visual cues, it's impossible to determine the product's relevance to the water shown."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "The video shows water, but without context, it's hard to judge the visual quality in relation to the product. If the product is related to water, the clarity of the water is important."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech was detected, so the audio quality is essentially non-existent."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "Without context or audio, the content is not engaging."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "There is no demonstrable use case shown in the video."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No brand mention was detected."
+    },
+    {
+      "name": "Reviewer_sentiment",
+      "score": 1,
+      "feedback": "Impossible to determine sentiment without audio or further visual context."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No call to action was detected."
+    }
+  ],
+  "recommendations": [
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Contact the reviewer to understand the context of the video and its connection to the product.",
+    "Request the reviewer to add audio or text to explain the video's content and their experience with the product."
+  ],
+  "analysisDate": "2025-04-01T09:01:31.917Z",
+  "videoLength": "00:14",
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": ""
+}

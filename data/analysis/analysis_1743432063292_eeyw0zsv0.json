@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743432063292_eeyw0zsv0",
+  "overallScore": 57,
+  "summary": "The video is a silent review of a pet treat. Without speech, it's difficult to gauge the reviewer's true sentiment or the full extent of the product's appeal.",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video directly features the product, making it highly relevant."
+    },
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "Visual quality is likely adequate, but without seeing the video, it's difficult to assess fully. Assuming it's viewable and not blurry."
+    },
+    {
+      "name": "audio_quality",
+      "score": 1,
+      "feedback": "No speech detected, so audio quality is essentially non-existent."
+    },
+    {
+      "name": "content_engagement",
+      "score": 3,
+      "feedback": "Without audio, the engagement is likely low. Visuals alone may not be enough to captivate viewers."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 5,
+      "feedback": "Potentially present if the video shows a pet consuming the treat, but impossible to confirm without speech or more labels."
+    },
+    {
+      "name": "brand_mention",
+      "score": 1,
+      "feedback": "No speech detected, so no brand mention is likely."
+    },
+    {
+      "name": "reviewer_sentiment",
+      "score": 1,
+      "feedback": "Impossible to determine sentiment without audio or more detailed labels."
+    },
+    {
+      "name": "call_to_action",
+      "score": 1,
+      "feedback": "No speech detected, so no call to action is present."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Encourage reviewers to include audio commentary in future reviews to better understand their experience.",
+    "Provide guidelines to reviewers on how to best showcase the product and its usage."
+  ],
+  "analysisDate": "2025-03-31T14:41:48.155Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "https://www.chewy.com/b/treats-335",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://www.chewy.com/b/treats-335"
+}

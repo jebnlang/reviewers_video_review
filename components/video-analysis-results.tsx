@@ -16,8 +16,8 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
   const [activeTab, setActiveTab] = useState("overview")
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600"
-    if (score >= 60) return "text-amber-600"
+    if (score >= 8) return "text-green-600"
+    if (score >= 6) return "text-amber-600"
     return "text-red-600"
   }
 
@@ -29,12 +29,18 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
             <Video className="h-6 w-6 text-white" />
             <h2 className="text-xl font-bold text-white">Video Analysis</h2>
           </div>
-          <Badge
-            variant={results.overallScore >= 80 ? "success" : results.overallScore >= 60 ? "warning" : "destructive"}
-            className="text-sm px-3 py-1"
-          >
-            Score: {results.overallScore}/100
-          </Badge>
+          {results.overallScore !== null ? (
+            <Badge
+              variant={results.overallScore >= 8 ? "success" : results.overallScore >= 6 ? "warning" : "destructive"}
+              className="text-sm px-3 py-1"
+            >
+              Score: {results.overallScore}/10
+            </Badge>
+          ) : (
+            <Badge variant="destructive" className="text-sm px-3 py-1">
+              Score Error
+            </Badge>
+          )}
         </div>
       </div>
 
@@ -57,45 +63,54 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
 
           <TabsContent value="overview" className="p-6 space-y-6">
             <div className="space-y-4">
-              <div className="flex flex-col items-center justify-center text-center">
-                <div className="relative w-32 h-32 mb-4">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className={`text-4xl font-bold ${getScoreColor(results.overallScore)}`}>
-                      {results.overallScore}
-                    </span>
+              {results.overallScore !== null ? (
+                <div className="flex flex-col items-center justify-center text-center">
+                  <div className="relative w-32 h-32 mb-4">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className={`text-4xl font-bold ${getScoreColor(results.overallScore)}`}>
+                        {results.overallScore}
+                      </span>
+                    </div>
+                    <svg className="w-full h-full" viewBox="0 0 100 100">
+                      <circle
+                        className="text-gray-200"
+                        strokeWidth="10"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="40"
+                        cx="50"
+                        cy="50"
+                      />
+                      <circle
+                        className={`${results.overallScore >= 8 ? "text-green-500" : results.overallScore >= 6 ? "text-amber-500" : "text-red-500"}`}
+                        strokeWidth="10"
+                        strokeDasharray={`${results.overallScore * 25.1} 251`}
+                        strokeLinecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="40"
+                        cx="50"
+                        cy="50"
+                      />
+                    </svg>
                   </div>
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <circle
-                      className="text-gray-200"
-                      strokeWidth="10"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="40"
-                      cx="50"
-                      cy="50"
-                    />
-                    <circle
-                      className={`${results.overallScore >= 80 ? "text-green-500" : results.overallScore >= 60 ? "text-amber-500" : "text-red-500"}`}
-                      strokeWidth="10"
-                      strokeDasharray={`${results.overallScore * 2.51} 251`}
-                      strokeLinecap="round"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="40"
-                      cx="50"
-                      cy="50"
-                    />
-                  </svg>
+                  <h3 className="text-xl font-semibold">Overall Score</h3>
+                  <p className="text-muted-foreground mt-1">
+                    {results.overallScore >= 8
+                      ? "Excellent! Your video performs very well."
+                      : results.overallScore >= 6
+                        ? "Good work. Some improvements possible."
+                        : "Needs improvement in several areas."}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold">Overall Score</h3>
-                <p className="text-muted-foreground mt-1">
-                  {results.overallScore >= 80
-                    ? "Excellent! Your video performs very well."
-                    : results.overallScore >= 60
-                      ? "Good work. Some improvements possible."
-                      : "Needs improvement in several areas."}
-                </p>
-              </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <h3 className="text-xl font-semibold text-red-700">Score Calculation Error</h3>
+                  <p className="text-muted-foreground mt-1 text-red-600">
+                    {results.scoreError || "An unknown error occurred during score calculation."}
+                  </p>
+                </div>
+              )}
 
               {results.adminSettings?.productDescription && (
                 <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
@@ -148,9 +163,9 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {results.categories.map((category, index) => (
                     <div key={index} className="flex items-center justify-between p-2 bg-white rounded border border-slate-200">
-                      <span className="text-sm font-medium">{category.name}</span>
-                      <Badge variant={category.score >= 80 ? "success" : category.score >= 60 ? "warning" : "destructive"}>
-                        {category.score}
+                      <span className="text-sm font-medium">{category.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+                      <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
+                        {category.score}/10
                       </Badge>
                     </div>
                   ))}
@@ -188,16 +203,16 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
               results.categories.map((category, index) => (
                 <div key={category.name} className="bg-slate-50 p-4 rounded-lg border border-slate-100 space-y-3">
                   <div className="flex justify-between items-center">
-                    <h3 className="font-medium">{category.name}</h3>
-                    <Badge variant={category.score >= 80 ? "success" : category.score >= 60 ? "warning" : "destructive"}>
-                      {category.score}/100
+                    <h3 className="font-medium">{category.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+                    <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
+                      {category.score}/10
                     </Badge>
                   </div>
                   <Progress
-                    value={category.score}
+                    value={category.score * 10}
                     className="h-2 bg-slate-200"
                     indicatorClassName={
-                      category.score >= 80 ? "bg-green-500" : category.score >= 60 ? "bg-amber-500" : "bg-red-500"
+                      category.score >= 8 ? "bg-green-500" : category.score >= 6 ? "bg-amber-500" : "bg-red-500"
                     }
                   />
                   <p className="text-sm text-muted-foreground">{category.feedback}</p>
