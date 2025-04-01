@@ -1,0 +1,85 @@
+{
+  "id": "analysis_1743499450698_8fivqa016",
+  "overallScore": 1,
+  "summary": "The video appears to be silent, lacking both speech and visual labels that would indicate its content. Without audio or visual cues, it's impossible to determine the video's subject or quality.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 1,
+      "feedback": "Without any speech or labels, it's impossible to determine if the video is related to Lattafa Teriaq. The provided URL context cannot be applied without any content to relate it to."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "Cannot be accurately assessed without visual labels or context."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech detected, indicating poor audio quality or a completely silent video."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "With no speech or labels, the content is not engaging."
+    },
+    {
+      "name": "Talking head presence",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Product visibility",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Unboxing or first impressions",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so no brand mention."
+    },
+    {
+      "name": "Product mention",
+      "score": 1,
+      "feedback": "No speech detected, so no product mention."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so no call to action."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Encourage reviewers to include audio commentary in their videos.",
+    "Suggest reviewers add visual labels or on-screen text to clarify the video's content."
+  ],
+  "analysisDate": "2025-04-01T09:25:21.106Z",
+  "videoLength": "00:15",
+  "adminSettings": {
+    "productPageUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Teriaq-89850.html",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement"
+    ]
+  },
+  "productPageUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Teriaq-89850.html"
+}

@@ -1,0 +1,89 @@
+{
+  "id": "analysis_1743499362150_gj11nmxmx",
+  "overallScore": 1,
+  "summary": "The video appears to be silent with no speech detected. Without visuals or speech, it's difficult to assess the video's content or quality beyond its existence.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 1,
+      "feedback": "Without any speech or visual cues, it's impossible to determine if the video is relevant to the Ice Pod product. The URL was considered, but the lack of content makes it impossible to assess relevance."
+    },
+    {
+      "name": "Visual quality",
+      "score": 1,
+      "feedback": "Cannot be assessed without visual information."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No audio detected."
+    },
+    {
+      "name": "Content engagement",
+      "score": 1,
+      "feedback": "Without any content, there is no engagement."
+    },
+    {
+      "name": "Talking head presence",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Product visibility",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Unboxing or first impressions",
+      "score": 1,
+      "feedback": "Cannot be determined without visual information."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so no brand mention."
+    },
+    {
+      "name": "Product mention",
+      "score": 1,
+      "feedback": "No speech detected, so no product mention."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so no call to action."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Improve engagement by adding more dynamic elements to your video.",
+    "Include more scene changes or camera angles to make the video more visually interesting.",
+    "Encourage reviewers to include audio commentary in their videos.",
+    "Provide reviewers with talking points or suggestions for demonstrating the product's use."
+  ],
+  "analysisDate": "2025-04-01T09:23:09.067Z",
+  "videoLength": "00:15",
+  "adminSettings": {
+    "productPageUrl": "https://podcompany.com/products/the-ice-pod",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://podcompany.com/products/the-ice-pod"
+}

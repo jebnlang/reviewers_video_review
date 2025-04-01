@@ -15,6 +15,7 @@ export interface VideoAnalysisResult {
   productPageUrl?: string
   adminSettings?: AdminSettings
   scoreError?: string
+  transcript?: string
 }
 
 export interface AdminSettings {

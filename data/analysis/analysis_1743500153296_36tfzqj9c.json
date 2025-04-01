@@ -1,0 +1,46 @@
+{
+  "id": "analysis_1743500153296_36tfzqj9c",
+  "overallScore": 9,
+  "summary": "The video is a review of a perfume. The reviewer loves the perfume's presentation and scent, calling it chic and sensual and highly recommends it.",
+  "videoLength": "N/A",
+  "analysisDate": "2025-04-01T09:36:02.352Z",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video clearly focuses on the perfume, showcasing its packaging and bottle design, which aligns with the product description at the provided URL."
+    },
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is well-lit and the product is in focus. The red background is a bit distracting, a neutral background would be better."
+    },
+    {
+      "name": "audio_quality",
+      "score": 9,
+      "feedback": "The audio is clear and easy to understand, with no noticeable background noise."
+    },
+    {
+      "name": "content_engagement",
+      "score": 7,
+      "feedback": "The reviewer expresses enthusiasm for the product, but could provide more specific details about the scent and its characteristics to further engage viewers."
+    }
+  ],
+  "recommendations": [
+    "Consider showing the perfume being sprayed to give viewers a better sense of how it's applied.",
+    "Include a brief description of the scent notes to provide more detail about why you love the perfume.",
+    "Mention the perfume's longevity or how long the scent lasts."
+  ],
+  "adminSettings": {
+    "productPageUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Teriaq-89850.html",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement"
+    ]
+  },
+  "productPageUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Teriaq-89850.html",
+  "transcript": "Este perfume me encantó, me encanta la presentación, es demasiado chic. Me gusta, muy sensualona y huele demasiado, demasiado bien, huele muy rico. Recomendado."
+}

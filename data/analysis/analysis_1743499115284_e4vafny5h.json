@@ -1,0 +1,72 @@
+{
+  "id": "analysis_1743499115284_e4vafny5h",
+  "overallScore": 2,
+  "summary": "This video appears to be a silent review of a product. Without speech, it's difficult to ascertain the reviewer's sentiment or specific use case, but visual cues will be key to understanding the product's relevance and demonstration.",
+  "categories": [
+    {
+      "name": "Product relevance",
+      "score": 5,
+      "feedback": "Without speech, it's hard to be certain. The video *might* be showing the Ice Pod, but visual confirmation is needed. If the video shows a pod-like structure and/or ice, it gains relevance. If not, it's irrelevant. Assuming it's showing *something* related to the product, even if vaguely, it gets a 5."
+    },
+    {
+      "name": "Visual quality",
+      "score": 5,
+      "feedback": "Cannot assess visual quality without any visual information from labels."
+    },
+    {
+      "name": "Audio quality",
+      "score": 1,
+      "feedback": "No speech detected, so audio quality is effectively non-existent."
+    },
+    {
+      "name": "Content engagement",
+      "score": 2,
+      "feedback": "Without audio or visual information, engagement is likely very low."
+    },
+    {
+      "name": "Use case demonstration",
+      "score": 1,
+      "feedback": "Impossible to determine if there's any use case demonstration without visual or audio cues."
+    },
+    {
+      "name": "Brand mention",
+      "score": 1,
+      "feedback": "No speech detected, so no brand mention."
+    },
+    {
+      "name": "Reviewer_sentiment",
+      "score": 1,
+      "feedback": "Cannot determine sentiment without speech or visual cues."
+    },
+    {
+      "name": "Call to action (CTA)",
+      "score": 1,
+      "feedback": "No speech detected, so no CTA."
+    }
+  ],
+  "recommendations": [
+    "Improve visual quality by using better lighting and camera equipment.",
+    "Consider filming in a well-lit environment with minimal distractions in the background.",
+    "Enhance audio clarity by using an external microphone rather than the built-in camera mic.",
+    "Record in a quiet environment to minimize background noise.",
+    "Encourage reviewers to provide narration or captions to explain their experience.",
+    "Provide reviewers with talking points or suggested scenarios to demonstrate the product's benefits."
+  ],
+  "analysisDate": "2025-04-01T09:18:54.204Z",
+  "videoLength": "00:00",
+  "adminSettings": {
+    "productPageUrl": "https://podcompany.com/products/the-ice-pod",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "brand_mention",
+      "reviewer_sentiment",
+      "call_to_action"
+    ]
+  },
+  "productPageUrl": "https://podcompany.com/products/the-ice-pod"
+}
