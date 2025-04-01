@@ -1,0 +1,46 @@
+{
+  "id": "analysis_1743500658461_01sxbse98",
+  "overallScore": 8,
+  "summary": "The video shows a woman applying makeup to her eyebrows. She is initially pleased with the result, but then expresses disbelief, suggesting she is not happy with the final look.",
+  "videoLength": "00:41",
+  "analysisDate": "2025-04-01T09:44:28.374Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is well-lit and in focus, making it easy to see the makeup application."
+    },
+    {
+      "name": "audio_quality",
+      "score": 9,
+      "feedback": "The audio is clear and easy to understand."
+    },
+    {
+      "name": "content_engagement",
+      "score": 6,
+      "feedback": "The video is short and to the point, but could be more engaging with more explanation and tips."
+    },
+    {
+      "name": "product_relevance",
+      "score": 7,
+      "feedback": "The video clearly shows the application of an eyebrow makeup product, but lacks specific details about the product itself."
+    }
+  ],
+  "recommendations": [
+    "Show the makeup product used more clearly.",
+    "Explain what you don't like about the final look.",
+    "Provide tips on how to avoid the issue you encountered."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_relevance"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Are you joking?"
+}

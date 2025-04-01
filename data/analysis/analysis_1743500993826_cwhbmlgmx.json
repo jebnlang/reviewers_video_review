@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743500993826_cwhbmlgmx",
+  "overallScore": 6,
+  "summary": "The video shows a woman applying makeup, specifically filling in her eyebrows. She expresses frustration with the product, asking if it is a joke.",
+  "videoLength": "00:42",
+  "analysisDate": "2025-04-01T09:50:04.727Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is well-lit and in focus, but the background is plain. A more interesting background or better framing could improve the visual appeal."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear and easy to understand. There is some music in the background, but it doesn't interfere with the speech."
+    },
+    {
+      "name": "content_engagement",
+      "score": 6,
+      "feedback": "The video is short and to the point, but it lacks a clear structure or narrative. More enthusiasm or personality could make it more engaging."
+    },
+    {
+      "name": "product_relevance",
+      "score": 7,
+      "feedback": "The video clearly shows the product being used, but more information about the product itself would be helpful."
+    },
+    {
+      "name": "product_visibility",
+      "score": 7,
+      "feedback": "The product is visible throughout the video, but a close-up shot of the packaging would be beneficial."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 1,
+      "feedback": "There is no unboxing in this video."
+    },
+    {
+      "name": "brand_mention",
+      "score": 5,
+      "feedback": "The brand of the eyebrow pencil is not explicitly mentioned, but the user does hold up the compact mirror with the brand logo."
+    }
+  ],
+  "recommendations": [
+    "Consider showing the product packaging more clearly at the start.",
+    "Provide more context about why the product is not working as expected.",
+    "Show the final look after using the product, even if it's not perfect, to give viewers a better idea of the result."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_relevance",
+      "product_visibility",
+      "unboxing_first_impressions",
+      "brand_mention"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Are you joking?"
+}

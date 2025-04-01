@@ -44,13 +44,13 @@ Analyze the provided video and generate a JSON response containing:
 3.  A list of actionable "recommendations" (as strings) for how the video could be improved, keeping in mind it's from a regular customer, not a professional.
 4.  An analysis of the following specific "categories": ${categoryListString}. For each category, provide its "name", a "score" from 1-10 (integer), and brief "feedback" text.
     - For the 'product_relevance' category: Consider the product described at the provided URL (${adminSettings?.productPageUrl || 'URL not provided'}) when scoring and giving feedback. If no URL was provided, base the score only on the video content.
-5.  The estimated "videoDuration" in MM:SS format.
+5.  The estimated total duration of the video in seconds, as an integer number, named "videoDurationSeconds".
 
 Important: Respond *only* with a single, valid JSON object adhering to this exact structure:
 {
   "transcript": "...",
   "summary": "...",
-  "videoDuration": "MM:SS",
+  "videoDurationSeconds": N,
   "recommendations": ["...", "..."],
   "categories": [
     {"name": "category_name_1", "score": N, "feedback": "..."},
@@ -102,7 +102,7 @@ Important: Respond *only* with a single, valid JSON object adhering to this exac
     let analysisData: {
         transcript: string;
         summary: string;
-        videoDuration: string;
+        videoDurationSeconds: number;
         recommendations: string[];
         categories: { name: string; score: number; feedback: string }[];
     };
@@ -117,7 +117,10 @@ Important: Respond *only* with a single, valid JSON object adhering to this exac
 
         if (typeof analysisData.transcript !== 'string') console.warn("Missing or invalid 'transcript' in JSON response, setting to empty string.");
         if (!analysisData.summary || typeof analysisData.summary !== 'string') throw new Error("Missing or invalid 'summary' in JSON.");
-        if (!analysisData.videoDuration || typeof analysisData.videoDuration !== 'string' || !/\\d+:\\d{2}/.test(analysisData.videoDuration)) console.warn(`Invalid or missing 'videoDuration' format ('${analysisData.videoDuration}'). Setting to N/A.`);
+        if (typeof analysisData.videoDurationSeconds !== 'number' || !Number.isInteger(analysisData.videoDurationSeconds) || analysisData.videoDurationSeconds < 0) {
+            console.warn(`Invalid or missing 'videoDurationSeconds' ('${analysisData.videoDurationSeconds}'). Cannot calculate video length.`);
+            analysisData.videoDurationSeconds = -1; // Mark as invalid for later check
+        }
         if (!Array.isArray(analysisData.recommendations)) throw new Error("Missing or invalid 'recommendations' array in JSON.");
         if (!Array.isArray(analysisData.categories)) throw new Error("Missing or invalid 'categories' array in JSON.");
         
@@ -138,23 +141,63 @@ Important: Respond *only* with a single, valid JSON object adhering to this exac
         throw new Error(`Failed to process Gemini response: ${errorMessage}`);
     }
 
-    // --- 4. Calculate Overall Score ---
+    // --- 4. Merge Gemini Results and Calculate Overall Score ---
+    console.log('Merging Gemini categories with requested categories...');
+
+    // Create a map of returned categories for efficient lookup
+    const returnedCategoryMap = new Map<string, { score: number; feedback: string }>();
+    if (Array.isArray(analysisData.categories)) {
+        analysisData.categories.forEach(cat => {
+            // Only add if the category structure is valid (name, score, feedback)
+            if (cat.name && typeof cat.score === 'number' && cat.feedback) {
+                returnedCategoryMap.set(cat.name, { score: cat.score, feedback: cat.feedback });
+            } else {
+                console.warn('Skipping invalid category structure from Gemini:', cat);
+            }
+        });
+    }
+
+    // Build the final categories list, ensuring all requested categories are present
+    const finalCategories: { name: string; score: number | null; feedback: string }[] = categoriesToAnalyze.map(requestedName => {
+        const returnedData = returnedCategoryMap.get(requestedName);
+        // Validate the returned score specifically (1-10 integer)
+        const isValidScore = returnedData && Number.isInteger(returnedData.score) && returnedData.score >= 1 && returnedData.score <= 10;
+
+        if (returnedData && isValidScore) {
+            return {
+                name: requestedName,
+                score: returnedData.score, // Keep the valid score
+                feedback: returnedData.feedback
+            };
+        } else {
+            // If not returned or score is invalid, add placeholder
+            return {
+                name: requestedName,
+                score: null,
+                feedback: returnedData 
+                    ? `Invalid score (${returnedData.score}) received for this category.` 
+                    : "Analysis for this category was not provided."
+            };
+        }
+    });
+    console.log('Final merged category list created:', { count: finalCategories.length });
+
+    // Calculate overall score based on the *final* list, only considering non-null scores
     let overallScore: number | null = null;
     let scoreError: string | undefined = undefined;
 
-    const validCategories = analysisData.categories.filter(
-        c => typeof c.score === 'number' && Number.isInteger(c.score) && c.score >= 1 && c.score <= 10
+    const categoriesWithValidScores = finalCategories.filter(
+        c => typeof c.score === 'number' // Already validated as 1-10 integer when merging
     );
 
-    if (validCategories.length > 0) {
-        const sumOfScores = validCategories.reduce((sum, cat) => sum + cat.score, 0);
-        const averageScore = sumOfScores / validCategories.length;
+    if (categoriesWithValidScores.length > 0) {
+        const sumOfScores = categoriesWithValidScores.reduce((sum, cat) => sum + (cat.score ?? 0), 0); // Use ?? 0 for type safety, though score should be number here
+        const averageScore = sumOfScores / categoriesWithValidScores.length;
         overallScore = Math.round(averageScore);
-        console.log('Calculated overall score (1-10 scale):', overallScore);
+        console.log('Calculated overall score based on final categories (1-10 scale):', overallScore);
     } else {
-        scoreError = analysisData.categories 
-            ? 'Score calculation failed: No valid category scores (1-10) returned by Gemini model.' 
-            : 'Score calculation failed: Categories array missing or invalid in Gemini response.';
+        // Error if none of the *requested* categories ended up with a valid score
+        scoreError = 'Score calculation failed: No valid scores (1-10) were provided for any requested category.';
         console.warn(scoreError);
     }
 
@@ -164,9 +207,10 @@ Important: Respond *only* with a single, valid JSON object adhering to this exac
         overallScore,
         scoreError,
         summary: analysisData.summary || "Summary not generated.",
-        videoLength: (analysisData.videoDuration && /\\d+:\\d{2}/.test(analysisData.videoDuration)) ? analysisData.videoDuration : "N/A", 
+        videoLength: formatDuration(analysisData.videoDurationSeconds),
         analysisDate: new Date().toISOString(),
-        categories: Array.isArray(analysisData.categories) ? analysisData.categories : [], 
+        // Use the merged list
+        categories: finalCategories, 
         recommendations: Array.isArray(analysisData.recommendations) ? analysisData.recommendations : [], 
         adminSettings,
         productPageUrl: adminSettings?.productPageUrl,
@@ -193,4 +237,13 @@ Important: Respond *only* with a single, valid JSON object adhering to this exac
     console.error('Failed Analysis Parameters:', { gcsUri, analysisId, adminSettingsProvided: !!adminSettings });
     throw new Error(`Failed to analyze video using Gemini: ${errorMessage}`);
   }
+}
+
+function formatDuration(totalSeconds: number): string {
+    if (totalSeconds < 0 || typeof totalSeconds !== 'number' || !Number.isInteger(totalSeconds)) {
+        return "N/A";
+    }
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 } 

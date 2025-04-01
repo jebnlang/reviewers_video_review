@@ -1,0 +1,45 @@
+{
+  "id": "analysis_1743500465111_nnmstw1ve",
+  "overallScore": 7,
+  "summary": "The video shows a woman applying makeup to her eyebrows. She seems surprised or frustrated with the results and asks if someone is joking about it.",
+  "videoLength": "N/A",
+  "analysisDate": "2025-04-01T09:41:16.592Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is well-lit and the image is clear, allowing viewers to easily see the makeup application process."
+    },
+    {
+      "name": "audio_quality",
+      "score": 7,
+      "feedback": "The audio is clear, but the background music is a bit loud and distracting."
+    },
+    {
+      "name": "content_engagement",
+      "score": 6,
+      "feedback": "The video is short and to the point, but it could be more engaging with a more detailed explanation of the makeup application process and the issue she encountered."
+    },
+    {
+      "name": "product_relevance",
+      "score": 7,
+      "feedback": "The video clearly shows the use of an eyebrow pencil, making it relevant to a makeup product review. However, without knowing the specific product, it's hard to assess the relevance fully."
+    }
+  ],
+  "recommendations": [
+    "Show the final look after applying the makeup to both eyebrows.",
+    "Explain what went wrong with the makeup application.",
+    "Provide tips on how to avoid the issue she encountered."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "audio_quality",
+      "content_engagement"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Are you joking?"
+}

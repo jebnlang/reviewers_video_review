@@ -164,9 +164,13 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
                   {results.categories.map((category, index) => (
                     <div key={index} className="flex items-center justify-between p-2 bg-white rounded border border-slate-200">
                       <span className="text-sm font-medium">{category.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
-                      <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
-                        {category.score}/10
-                      </Badge>
+                      {category.score !== null ? (
+                        <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
+                          {category.score}/10
+                        </Badge>
+                      ) : (
+                        <Badge variant="secondary">N/A</Badge>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -204,17 +208,25 @@ export default function VideoAnalysisResults({ results }: VideoAnalysisResultsPr
                 <div key={category.name} className="bg-slate-50 p-4 rounded-lg border border-slate-100 space-y-3">
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium">{category.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
-                    <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
-                      {category.score}/10
-                    </Badge>
+                    {category.score !== null ? (
+                      <Badge variant={category.score >= 8 ? "success" : category.score >= 6 ? "warning" : "destructive"}>
+                        {category.score}/10
+                      </Badge>
+                    ) : (
+                      <Badge variant="secondary">N/A</Badge>
+                    )}
                   </div>
-                  <Progress
-                    value={category.score * 10}
-                    className="h-2 bg-slate-200"
-                    indicatorClassName={
-                      category.score >= 8 ? "bg-green-500" : category.score >= 6 ? "bg-amber-500" : "bg-red-500"
-                    }
-                  />
+                  {category.score !== null ? (
+                    <Progress
+                      value={category.score * 10}
+                      className="h-2 bg-slate-200"
+                      indicatorClassName={
+                        category.score >= 8 ? "bg-green-500" : category.score >= 6 ? "bg-amber-500" : "bg-red-500"
+                      }
+                    />
+                  ) : (
+                    <div className="h-2 bg-slate-200 rounded-full" />
+                  )}
                   <p className="text-sm text-muted-foreground">{category.feedback}</p>
                 </div>
               ))
