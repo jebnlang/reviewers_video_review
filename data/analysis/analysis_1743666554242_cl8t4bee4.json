@@ -1,0 +1,58 @@
+{
+  "id": "analysis_1743666554242_cl8t4bee4",
+  "overallScore": 7,
+  "summary": "The reviewer loves the perfume, especially the presentation, which they describe as chic and sensual. They also say the perfume smells very good and recommend it.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-03T07:49:22.337Z",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 8,
+      "feedback": "The video clearly focuses on the perfume and its packaging, making it highly relevant to the product."
+    },
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is generally clear, but the lighting could be improved to better showcase the details of the perfume bottle."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear and easy to understand."
+    },
+    {
+      "name": "content_engagement",
+      "score": 6,
+      "feedback": "The review is short and enthusiastic, but could be more engaging with specific details about the scent and its longevity."
+    },
+    {
+      "name": "product_mention",
+      "score": 9,
+      "feedback": "The perfume is the central focus of the video and is mentioned multiple times."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 3,
+      "feedback": "The video does not demonstrate how the perfume is used; it only shows the bottle and packaging."
+    }
+  ],
+  "recommendations": [
+    "Show the perfume being sprayed to demonstrate its use.",
+    "Mention the specific notes or scent profile of the perfume to help viewers understand the fragrance.",
+    "Provide more context on where you purchased the perfume."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_mention",
+      "use_case_demonstration"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Este perfume me encantó, me encanta la presentación, es demasiado chic, me gusta, muy sensualona y huele demasiado demasiado bien, huele muy rico. Recomendado."
+}

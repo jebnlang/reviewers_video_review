@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743666598041_9gaj65txn",
+  "overallScore": 6,
+  "summary": "The video shows a person removing the lid of an ice bath tub, revealing the water inside. The tub is branded with \"The Pod Company\" and contains ice packs to keep the water cold.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-03T07:50:05.997Z",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 8,
+      "feedback": "The video clearly shows the product and its intended use."
+    },
+    {
+      "name": "visual_quality",
+      "score": 6,
+      "feedback": "The video is adequately lit and the product is in focus, but the framing could be improved."
+    },
+    {
+      "name": "content_engagement",
+      "score": 4,
+      "feedback": "The video lacks narration or any engaging elements to hold the viewer's attention."
+    },
+    {
+      "name": "product_mention",
+      "score": 10,
+      "feedback": "The product is prominently displayed and the brand is clearly visible."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 3,
+      "feedback": "The video only shows the tub being opened, not actually used."
+    },
+    {
+      "name": "talking_head_presence",
+      "score": 1,
+      "feedback": "There is no talking head in the video."
+    },
+    {
+      "name": "reviewer_sentiment",
+      "score": 7,
+      "feedback": "The reviewer seems neutral, simply showing the product without expressing strong opinions."
+    }
+  ],
+  "recommendations": [
+    "Add some narration to explain the purpose and benefits of the ice bath.",
+    "Show the process of filling the tub with water and ice.",
+    "Include footage of someone actually using the ice bath to demonstrate its use."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "content_engagement",
+      "product_mention",
+      "use_case_demonstration",
+      "talking_head_presence",
+      "reviewer_sentiment"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}

@@ -43,6 +43,7 @@ Analyze the provided video and generate a JSON response containing:
 2.  A concise 2-3 sentence "summary" of the video content.
 3.  A list of actionable "recommendations" (as strings) for how the video could be improved, keeping in mind it's from a regular customer, not a professional.
 4.  An analysis of the following specific "categories": ${categoryListString}. For each category, provide its "name", a "score" from 1-10 (integer), and brief "feedback" text.
+    **Evaluate critically using reasonably high standards for customer-submitted content; consider a score of 5-6 to represent an average/acceptable amateur review in that category, reserving higher scores (7+) for aspects that genuinely excel.**
     - For the 'product_relevance' category: Consider the product described at the provided URL (${adminSettings?.productPageUrl || 'URL not provided'}) when scoring and giving feedback. If no URL was provided, base the score only on the video content.
 5.  The estimated total duration of the video in seconds, as an integer number, named "videoDurationSeconds".
 
