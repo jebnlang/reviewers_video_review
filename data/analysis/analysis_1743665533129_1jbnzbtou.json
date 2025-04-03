@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743665533129_1jbnzbtou",
+  "overallScore": 6,
+  "summary": "The video shows a person opening a black ice bath tub from The Pod Company. The tub is filled with water and has ice packs inside to keep the water cold.",
+  "videoLength": "00:14",
+  "analysisDate": "2025-04-03T07:32:20.458Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The video is clear and well-lit, but could benefit from more dynamic shots."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "The video is short and to the point, but lacks any personal engagement or commentary."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 4,
+      "feedback": "The video shows the tub filled with water, but doesn't demonstrate its use."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 2,
+      "feedback": "There is no unboxing shown in the video."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio is clear, but there is no speech."
+    },
+    {
+      "name": "brand_mention",
+      "score": 9,
+      "feedback": "The brand \"The Pod Company\" is clearly displayed on the product."
+    },
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video clearly shows and focuses on the ice bath tub."
+    }
+  ],
+  "recommendations": [
+    "Add some commentary about the product and your experience with it.",
+    "Show the process of filling the tub with water and adding ice.",
+    "Demonstrate how easy it is to get in and out of the tub."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "unboxing_first_impressions",
+      "audio_quality",
+      "brand_mention",
+      "product_relevance"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}

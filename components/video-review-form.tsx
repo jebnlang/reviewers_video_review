@@ -206,6 +206,11 @@ export function VideoReviewForm() {
       setIsAnalyzing(true)
       console.log('Starting analysis with GCS URI:', gcsUri);
       
+      const latestAdminSettings = clientStorage.getSettings();
+      if (!latestAdminSettings) {
+        console.warn('Admin settings not found in storage before analysis.');
+      }
+
       const analysisId = `analysis_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       
       if (currentFile && currentPreviewUrl && gcsUri) {
@@ -215,7 +220,7 @@ export function VideoReviewForm() {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ gcsUri, adminSettings, analysisId }),
+        body: JSON.stringify({ gcsUri, adminSettings: latestAdminSettings, analysisId }),
       })
 
       if (response.status === 202) {

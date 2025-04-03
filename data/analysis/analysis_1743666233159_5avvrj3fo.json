@@ -1,0 +1,58 @@
+{
+  "id": "analysis_1743666233159_5avvrj3fo",
+  "overallScore": 8,
+  "summary": "The video shows a person reviewing a perfume. They love the presentation and scent, describing it as chic, sensual, and rich.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-03T07:44:02.666Z",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video clearly focuses on the perfume and its packaging, making it highly relevant."
+    },
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is clear and well-lit, showing the perfume bottle and packaging effectively. However, the background could be less distracting."
+    },
+    {
+      "name": "audio_quality",
+      "score": 9,
+      "feedback": "The audio is clear and easy to understand, with no noticeable background noise."
+    },
+    {
+      "name": "content_engagement",
+      "score": 7,
+      "feedback": "The reviewer expresses enthusiasm, but could add more detail about the scent profile and longevity to further engage viewers."
+    },
+    {
+      "name": "product_mention",
+      "score": 10,
+      "feedback": "The perfume is the central focus and is mentioned explicitly."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 2,
+      "feedback": "The video shows the perfume bottle, but does not demonstrate its use (spraying the perfume)."
+    }
+  ],
+  "recommendations": [
+    "Show the perfume being sprayed to demonstrate how it works.",
+    "Describe the specific notes or scents that you detect in the perfume.",
+    "Mention how long the scent lasts on your skin."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "product_relevance",
+      "visual_quality",
+      "audio_quality",
+      "content_engagement",
+      "product_mention",
+      "use_case_demonstration"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": "Este perfume me encantó, me encanta la presentación, es demasiado chic. Me gusta, muy sensualona, y huele demasiado demasiado bien, huele muy rico. Recomendado."
+}

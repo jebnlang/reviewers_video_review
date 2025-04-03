@@ -1,0 +1,70 @@
+{
+  "id": "analysis_1743665586263_5gwiuty60",
+  "overallScore": 5,
+  "summary": "The video shows a person opening a black ice pod filled with water and ice packs. The ice pod is placed on a black mat with the company's logo on it.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-03T07:33:12.970Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The visual quality is decent, though the lighting could be improved to make the product more appealing."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "The video is short and shows the product, but lacks engaging content like a demonstration or explanation."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 2,
+      "feedback": "There is no demonstration of how to use the ice pod."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 1,
+      "feedback": "There is no unboxing in this video."
+    },
+    {
+      "name": "audio_quality",
+      "score": 8,
+      "feedback": "The audio quality is fine, but there is no speech."
+    },
+    {
+      "name": "brand_mention",
+      "score": 9,
+      "feedback": "The brand 'The Pod Company' and 'The Ice Pod' are clearly visible on the product."
+    },
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video clearly shows the ice pod and its components, making it highly relevant."
+    },
+    {
+      "name": "talking_head_presence",
+      "score": 1,
+      "feedback": "There is no talking head in this video."
+    }
+  ],
+  "recommendations": [
+    "Add some narration to explain the product and its benefits.",
+    "Show the process of filling the ice pod with water and ice.",
+    "Include footage of someone using the ice pod to demonstrate its use."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "unboxing_first_impressions",
+      "audio_quality",
+      "brand_mention",
+      "product_relevance",
+      "talking_head_presence"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}

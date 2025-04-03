@@ -1,0 +1,71 @@
+{
+  "id": "analysis_1743665896293_rlxgqv2ue",
+  "overallScore": 4,
+  "summary": "The video shows a portable ice bath, filled with water and ice. The reviewer demonstrates the product's portability and ease of setup.",
+  "videoLength": "00:15",
+  "analysisDate": "2025-04-03T07:38:24.331Z",
+  "categories": [
+    {
+      "name": "product_relevance",
+      "score": 7,
+      "feedback": "The video clearly shows the product, but without a product page URL, assessing relevance is difficult. Assuming it's a review of a portable ice bath, the video is relevant."
+    },
+    {
+      "name": "visual_quality",
+      "score": 7,
+      "feedback": "The visual quality is decent, the product is in focus and well-lit. However, the background is a bit distracting."
+    },
+    {
+      "name": "audio_quality",
+      "score": 1,
+      "feedback": "There is no audio. Adding a voiceover would significantly improve the video."
+    },
+    {
+      "name": "content_engagement",
+      "score": 3,
+      "feedback": "The video lacks any engaging elements. Adding a demonstration of the product in use and a personal experience would make it more interesting."
+    },
+    {
+      "name": "talking_head_presence",
+      "score": 1,
+      "feedback": "There is no talking head presence."
+    },
+    {
+      "name": "product_visibility",
+      "score": 9,
+      "feedback": "The product is highly visible and takes up most of the frame."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 4,
+      "feedback": "The video shows the product set up, but doesn't demonstrate its intended use (e.g., someone taking an ice bath)."
+    },
+    {
+      "name": "unboxing_or_first_impressions",
+      "score": 1,
+      "feedback": "There is no unboxing or first impressions shown in the video."
+    },
+    {
+      "name": "brand_mention",
+      "score": 5,
+      "feedback": "The brand is subtly visible on the side of the ice bath. A more explicit mention would be beneficial."
+    },
+    {
+      "name": "product_mention",
+      "score": 3,
+      "feedback": "The product is visually present, but not verbally mentioned."
+    },
+    {
+      "name": "call_to_action",
+      "score": 1,
+      "feedback": "There is no call to action."
+    }
+  ],
+  "recommendations": [
+    "Add a verbal description of the product and its features.",
+    "Show the process of filling and emptying the ice bath.",
+    "Include a shot of someone actually using the ice bath."
+  ],
+  "adminSettings": null,
+  "transcript": ""
+}

@@ -1,0 +1,64 @@
+{
+  "id": "analysis_1743665472079_51dfnkqa2",
+  "overallScore": 7,
+  "summary": "This video shows a person removing the lid from an ice bath tub. The tub is filled with water and ice packs, ready for use.",
+  "videoLength": "00:14",
+  "analysisDate": "2025-04-03T07:31:20.866Z",
+  "categories": [
+    {
+      "name": "visual_quality",
+      "score": 8,
+      "feedback": "The video is clear and well-lit, providing a good view of the product."
+    },
+    {
+      "name": "content_engagement",
+      "score": 5,
+      "feedback": "The video is short and to the point, but lacks engaging elements like personal experience or a demonstration of use."
+    },
+    {
+      "name": "use_case_demonstration",
+      "score": 3,
+      "feedback": "The video only shows the tub filled with water and ice packs, without demonstrating its actual use."
+    },
+    {
+      "name": "unboxing_first_impressions",
+      "score": 1,
+      "feedback": "This is not an unboxing video."
+    },
+    {
+      "name": "audio_quality",
+      "score": 10,
+      "feedback": "There is no audio, so the quality is perfect."
+    },
+    {
+      "name": "brand_mention",
+      "score": 10,
+      "feedback": "The brand \"The Pod Company\" and \"The Ice Pod\" are clearly visible on the product."
+    },
+    {
+      "name": "product_relevance",
+      "score": 10,
+      "feedback": "The video clearly shows and focuses on the ice bath product."
+    }
+  ],
+  "recommendations": [
+    "Add some commentary about your experience with the ice bath.",
+    "Show yourself getting into the ice bath to demonstrate its use.",
+    "Mention how long you typically stay in the ice bath and any benefits you've noticed."
+  ],
+  "adminSettings": {
+    "productPageUrl": "",
+    "productDescription": "",
+    "selectedCategories": [
+      "visual_quality",
+      "content_engagement",
+      "use_case_demonstration",
+      "unboxing_first_impressions",
+      "audio_quality",
+      "brand_mention",
+      "product_relevance"
+    ]
+  },
+  "productPageUrl": "",
+  "transcript": ""
+}
