@@ -17,24 +17,33 @@ const storage = new Storage();
 const bucket = storage.bucket(process.env.GOOGLE_CLOUD_STORAGE_BUCKET || '');
 
 export async function POST(request: NextRequest): Promise<Response> {
+  console.log("API Route /api/upload POST handler invoked.");
+  console.log("Request Headers:", JSON.stringify(Object.fromEntries(request.headers.entries()), null, 2));
+
   try {
     if (!process.env.GOOGLE_CLOUD_STORAGE_BUCKET) {
       throw new Error('Google Cloud Storage bucket not configured');
     }
 
+    console.log("Attempting to parse formData...");
     const formData = await request.formData();
+    console.log("FormData parsing successful.");
     const file = formData.get('file') as File;
 
     if (!file) {
+      console.error("No file found in formData.");
       return Response.json(
         { success: false, error: 'No file provided' } as VideoUploadResponse,
         { status: 400 }
       );
     }
 
+    console.log(`File details: Name: ${file.name}, Size: ${file.size}, Type: ${file.type}`);
+
     // Validate file type
     const validTypes = ['video/mp4', 'video/webm', 'video/quicktime'];
     if (!validTypes.includes(file.type)) {
+      console.warn(`Invalid file type detected: ${file.type}`);
       return Response.json(
         { success: false, error: 'Invalid file type. Please upload MP4, WebM, or MOV file.' } as VideoUploadResponse,
         { status: 400 }
@@ -44,6 +53,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     // Validate file size (100MB max)
     const maxSize = 100 * 1024 * 1024; // 100MB in bytes
     if (file.size > maxSize) {
+      console.warn(`File size exceeds limit: ${file.size} bytes > ${maxSize} bytes`);
       return Response.json(
         { success: false, error: 'File too large. Maximum size is 100MB.' } as VideoUploadResponse,
         { status: 400 }
@@ -56,6 +66,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     const filename = `videos/${timestamp}-${safeName}`;
     const blob = bucket.file(filename);
 
+    console.log(`Attempting to upload to GCS: gs://${bucket.name}/${filename}`);
     // Upload to Cloud Storage using stream piping
     await new Promise((resolve, reject) => {
       const stream = blob.createWriteStream({
@@ -80,6 +91,7 @@ export async function POST(request: NextRequest): Promise<Response> {
       nodeStream.pipe(stream);
     });
 
+    console.log("GCS upload successful.");
     const gcsUri = `gs://${bucket.name}/${filename}`;
 
     return Response.json(
@@ -87,9 +99,12 @@ export async function POST(request: NextRequest): Promise<Response> {
       { status: 200 }
     );
   } catch (error: unknown) {
-    console.error('Upload error:', error);
+    console.error('--- Upload API Error Caught ---');
+    console.error('Error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-    
+    console.error('Error Message:', errorMessage);
+    console.error('--- End Upload API Error ---');
+
     return Response.json(
       { success: false, error: errorMessage } as VideoUploadResponse,
       { status: 500 }
