@@ -4,6 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 import type { VideoUploadResponse } from '@/lib/types';
 import { Readable } from 'stream';
 
+// Increase the body size limit for this API route
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '100mb', // Set desired limit (e.g., '100mb')
+    },
+  },
+};
+
 const storage = new Storage();
 const bucket = storage.bucket(process.env.GOOGLE_CLOUD_STORAGE_BUCKET || '');
 
